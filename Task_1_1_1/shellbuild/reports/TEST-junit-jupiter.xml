@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JUnit Jupiter" tests="5" skipped="0" failures="0" errors="0" time="1.829" hostname="LAPTOP-O3UH7V3J" timestamp="2024-09-12T18:47:08">
+<properties>
+<property name="file.encoding" value="UTF-8"/>
+<property name="file.separator" value="\"/>
+<property name="java.class.path" value="../lib/junit-platform-console-standalone-1.7.0-all.jar"/>
+<property name="java.class.version" value="65.0"/>
+<property name="java.home" value="C:\Program Files\Java\jdk-21"/>
+<property name="java.io.tmpdir" value="C:\Users\evdra\AppData\Local\Temp\"/>
+<property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.2\libnvvp;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\PuTTY;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\dotnet;C:\Program Files\Steel Bank Common Lisp;C:\Program Files\NVIDIA Corporation\Nsight Compute 2023.2.1;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\WireGuard;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI;C:\Program Files\swipl\bin;C:\Users\evdra\AppData\Roaming\local\bin;C:\Users\evdra\AppData\Local\Programs\Python\Python311\Scripts;C:\Users\evdra\AppData\Local\Programs\Python\Python311;C:\Users\evdra\AppData\Local\Programs\Python\Launcher;C:\Users\evdra\AppData\Local\Microsoft\WindowsApps;C:\Users\evdra\.dotnet\tools;C:\Users\evdra\AppData\Local\Programs\Microsoft VS Code\bin;C:\msys64\mingw64\bin;C:\ghcup\bin;C:\ghcup\ghc\9.6.2\bin;C:\msys64\usr\bin;I:\SOURCE\java\IntelliJ IDEA Community Edition 2024.2.1\bin;C:\Program Files\Java\jdk-17.0.3\bin;."/>
+<property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+<property name="java.runtime.version" value="21.0.4+8-LTS-274"/>
+<property name="java.specification.name" value="Java Platform API Specification"/>
+<property name="java.specification.vendor" value="Oracle Corporation"/>
+<property name="java.specification.version" value="21"/>
+<property name="java.vendor" value="Oracle Corporation"/>
+<property name="java.vendor.url" value="https://java.oracle.com/"/>
+<property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+<property name="java.version" value="21.0.4"/>
+<property name="java.version.date" value="2024-07-16"/>
+<property name="java.vm.compressedOopsMode" value="Zero based"/>
+<property name="java.vm.info" value="mixed mode, sharing"/>
+<property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+<property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+<property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+<property name="java.vm.specification.version" value="21"/>
+<property name="java.vm.vendor" value="Oracle Corporation"/>
+<property name="java.vm.version" value="21.0.4+8-LTS-274"/>
+<property name="jdk.debug" value="release"/>
+<property name="line.separator" value="
+"/>
+<property name="native.encoding" value="Cp1251"/>
+<property name="os.arch" value="amd64"/>
+<property name="os.name" value="Windows 10"/>
+<property name="os.version" value="10.0"/>
+<property name="path.separator" value=";"/>
+<property name="stderr.encoding" value="cp866"/>
+<property name="stdout.encoding" value="cp866"/>
+<property name="sun.arch.data.model" value="64"/>
+<property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
+<property name="sun.cpu.endian" value="little"/>
+<property name="sun.cpu.isalist" value="amd64"/>
+<property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+<property name="sun.java.command" value="../lib/junit-platform-console-standalone-1.7.0-all.jar -cp ./build/main --select-class ru.nsu.pereverzev.MainTest --reports-dir ./reports"/>
+<property name="sun.java.launcher" value="SUN_STANDARD"/>
+<property name="sun.jnu.encoding" value="Cp1251"/>
+<property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+<property name="sun.os.patch.level" value=""/>
+<property name="user.country" value="RU"/>
+<property name="user.dir" value="I:\NSU\OOP_\OOP\Task_1_1_1\shellbuild"/>
+<property name="user.home" value="C:\Users\evdra"/>
+<property name="user.language" value="ru"/>
+<property name="user.name" value="evdra"/>
+<property name="user.script" value=""/>
+<property name="user.timezone" value="Asia/Novosibirsk"/>
+<property name="user.variant" value=""/>
+</properties>
+<testcase name="sample()" classname="ru.nsu.pereverzev.MainTest" time="0.015">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ru.nsu.pereverzev.MainTest]/[method:sample()]
+display-name: sample()
+]]></system-out>
+</testcase>
+<testcase name="small1()" classname="ru.nsu.pereverzev.MainTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ru.nsu.pereverzev.MainTest]/[method:small1()]
+display-name: small1()
+]]></system-out>
+</testcase>
+<testcase name="small2()" classname="ru.nsu.pereverzev.MainTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ru.nsu.pereverzev.MainTest]/[method:small2()]
+display-name: small2()
+]]></system-out>
+</testcase>
+<testcase name="bignums()" classname="ru.nsu.pereverzev.MainTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ru.nsu.pereverzev.MainTest]/[method:bignums()]
+display-name: bignums()
+]]></system-out>
+</testcase>
+<testcase name="asymptotics()" classname="ru.nsu.pereverzev.MainTest" time="1.786">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ru.nsu.pereverzev.MainTest]/[method:asymptotics()]
+display-name: asymptotics()
+]]></system-out>
+</testcase>
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]
+display-name: JUnit Jupiter
+]]></system-out>
+</testsuite>
