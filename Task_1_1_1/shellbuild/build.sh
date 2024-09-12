@@ -12,7 +12,8 @@ if [[ $? -ne 0 ]]; then
     exit 2
 fi
 
-java -jar  "../lib/junit-platform-console-standalone-1.7.0-all.jar" -cp "./build/main" --select-class ru.nsu.pereverzev.MainTest --reports-dir './reports'
+java -javaagent:"../lib/jacoco-0.8.12/lib/jacocoagent.jar=destfile=./jacoco_ex.exec" \
+    -jar  "../lib/junit-platform-console-standalone-1.7.0-all.jar" -cp "./build/main" --scan-classpath
 
 if [[ $? -ne 0 ]]; then
     echo "junit test execution failed"
@@ -26,14 +27,11 @@ if [[ $? -ne 0 ]]; then
     exit 4
 fi
 
-java -jar -javaagent:"../lib/jacoco-0.8.12/lib/jacocoagent.jar=output=tcpserver,address=localhost,port=8084" ../lib/jacoco-0.8.12/lib/jacococli.jar dump --destfile ./jacocoTest.exec --port 8084
-
-if [[ $? -ne 0 ]]; then
-    echo "coverage report generation failed"
-    exit 5
-fi
-
-java -jar ../lib/jacoco-0.8.12/lib/jacococli.jar execinfo ./jacocoTest.exec
+java -jar ../lib/jacoco-0.8.12/lib/jacococli.jar report ./jacoco_ex.exec \
+    --classfiles ./build/main/ \
+    --sourcefiles ../src/main/java \
+    --html ./coverage \
+    --name "coverage"
 
 if [[ $? -ne 0 ]]; then
     echo "coverage report generation failed"
