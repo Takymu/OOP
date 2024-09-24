@@ -2,7 +2,6 @@ package ru.nsu.pereverzev;
 
 import java.lang.String;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 enum Suit {
@@ -12,7 +11,7 @@ enum Suit {
     DMNDS
 }
 
-class intReader {
+class IntReader {
     static boolean readConsole = false;
     static String inp;
     static int cid;
@@ -52,7 +51,7 @@ public class Main {
     }
     public static void play() {
         System.out.println("Добро пожаловать в Блэкджэк!");
-        while (intReader.getLastreaded() != 2) {
+        while (IntReader.getLastreaded() != 2) {
             System.out.printf("Раунд %d\n", player_score + diler_score + 1);
             Player player = new Player();
             Player diler = new Player();
@@ -75,7 +74,7 @@ public class Main {
             System.out.print(diler.getCardsList());
             System.out.print("]\nВаш ход\n-------\nВведите \"1\", чтобы взять карту, и \"0\", чтобы остановиться...\n");
 
-            while (player.getScore() <= Constants.wscore && intReader.read() == 1) {
+            while (player.getScore() <= Constants.wscore && IntReader.read() == 1) {
                 card = casino.getCard("player");
                 card.open();
                 card = player.addCardScore(card);
@@ -91,7 +90,7 @@ public class Main {
                     System.out.print("]\n");
                 }
             }
-            if (intReader.getLastreaded() == 2)
+            if (IntReader.getLastreaded() == 2)
             {
                 return;
             }
