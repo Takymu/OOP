@@ -1,9 +1,12 @@
 package ru.nsu.pereverzev;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 
 class CardTest {
+
     @Test
     void getPrintName_open() {
         Card card = new Card(10, Suit.SPADES, "queen");

@@ -17,14 +17,17 @@ class IntReader {
     static int cid;
     static Scanner console = new Scanner(System.in);
     static int lastreaded;
+
     public static void enableStringRead(String str) {
         readConsole = true;
         inp = str;
         cid = 0;
     }
+
     public static int getLastreaded() {
         return lastreaded;
     }
+
     public static int read() {
         if (readConsole) {
             lastreaded = inp.charAt(cid) - '0';
@@ -49,6 +52,7 @@ public class Main {
     public static void main(String[] args) {
         play();
     }
+
     public static void play() {
         System.out.println("Добро пожаловать в Блэкджэк!");
         while (IntReader.getLastreaded() != 2) {
@@ -320,7 +324,6 @@ class Casino {
         supportInitialize(Suit.CLUBS, size * 2);
         supportInitialize(Suit.CLUBS, size * 3);
     }
-
 
     private void supportInitialize(Suit suit, int start) {
         int curPrice = 2;
