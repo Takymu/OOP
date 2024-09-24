@@ -5,12 +5,37 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-
 enum Suit {
     SPADES,
     HEARTS,
     CLUBS,
     DMNDS
+}
+
+class intReader {
+    static boolean readConsole = false;
+    static String inp;
+    static int cid;
+    static Scanner console = new Scanner(System.in);
+    static int lastreaded;
+    public static void enableStringRead(String str) {
+        readConsole = true;
+        inp = str;
+        cid = 0;
+    }
+    public static int getLastreaded() {
+        return lastreaded;
+    }
+    public static int read() {
+        if (readConsole) {
+            lastreaded = inp.charAt(cid) - '0';
+            cid++;
+            return lastreaded;
+        } else {
+            lastreaded = console.nextInt();
+            return  lastreaded;
+        }
+    }
 }
 
 class Constants {
@@ -23,9 +48,11 @@ public class Main {
     static int diler_score = 0;
 
     public static void main(String[] args) {
-        Scanner console = new Scanner(System.in);
+        play();
+    }
+    public static void play() {
         System.out.println("Добро пожаловать в Блэкджэк!");
-        while (true) {
+        while (intReader.getLastreaded() != 2) {
             System.out.printf("Раунд %d\n", player_score + diler_score + 1);
             Player player = new Player();
             Player diler = new Player();
@@ -47,25 +74,50 @@ public class Main {
             diler.addCardScore(dilcard);
             System.out.print(diler.getCardsList());
             System.out.print("]\nВаш ход\n-------\nВведите \"1\", чтобы взять карту, и \"0\", чтобы остановиться...\n");
-            while (true) {
-                while (player.getScore() <= Constants.wscore && console.nextInt() == 1) {
-                    card = casino.getCard("player");
-                    card.open();
-                    card = player.addCardScore(card);
-                    System.out.print("Вы открыли карту ");
-                    System.out.print(card.getPrintName());
-                    System.out.print("\nВаши карты: [");
-                    System.out.print(player.getCardsList());
-                    System.out.printf("] => %d\nКарты дилера: [", player.getScore());
-                    System.out.print(diler.getCardsList());
-                    if (player.getScore() <= Constants.wscore) {
-                        System.out.print("]\nВаш ход\n-------\nВведите \"1\", чтобы взять карту, и \"0\", чтобы остановиться...\n");
-                    } else {
-                        System.out.print("]\n");
-                    }
-                }
 
-                if (player.getScore() > Constants.wscore) {
+            while (player.getScore() <= Constants.wscore && intReader.read() == 1) {
+                card = casino.getCard("player");
+                card.open();
+                card = player.addCardScore(card);
+                System.out.print("Вы открыли карту ");
+                System.out.print(card.getPrintName());
+                System.out.print("\nВаши карты: [");
+                System.out.print(player.getCardsList());
+                System.out.printf("] => %d\nКарты дилера: [", player.getScore());
+                System.out.print(diler.getCardsList());
+                if (player.getScore() <= Constants.wscore) {
+                    System.out.print("]\nВаш ход\n-------\nВведите \"1\", чтобы взять карту, и \"0\", чтобы остановиться...\n");
+                } else {
+                    System.out.print("]\n");
+                }
+            }
+            if (intReader.getLastreaded() == 2)
+            {
+                return;
+            }
+            if (player.getScore() > Constants.wscore) {
+                diler_score++;
+                System.out.printf("Вы проиграли раунд! Счет %d:%d ", player_score, diler_score);
+                if (player_score > diler_score) {
+                    System.out.print("в вашу пользу.\n");
+                }
+                if (player_score < diler_score) {
+                    System.out.print("в пользу дилера.\n");
+                }
+                continue;
+            }
+            System.out.print("Ход дилера\n-------\nДилер открывает закрытую карту ");
+            dilcard.open();
+            System.out.print(dilcard.getPrintName());
+            System.out.print("\nВаши карты: [");
+            System.out.print(player.getCardsList());
+            System.out.printf("] => %d\nКарты дилера: [", player.getScore());
+            System.out.print(diler.getCardsList());
+            System.out.printf("] => %d\n", diler.getScore());
+            if (diler.isBlackjack()) {
+                System.out.print("У дилера блэкджек!\n");
+                if (!player.isBlackjack()) {
+                    System.out.print("У вас - нет!\n");
                     diler_score++;
                     System.out.printf("Вы проиграли раунд! Счет %d:%d ", player_score, diler_score);
                     if (player_score > diler_score) {
@@ -74,73 +126,68 @@ public class Main {
                     if (player_score < diler_score) {
                         System.out.print("в пользу дилера.\n");
                     }
-                    break;
-                }
-                System.out.print("Ход дилера\n-------\nДилер открывает закрытую карту ");
-                dilcard.open();
-                System.out.print(dilcard.getPrintName());
-                System.out.print("\nВаши карты: [");
-                System.out.print(player.getCardsList());
-                System.out.printf("] => %d\nКарты дилера: [", player.getScore());
-                System.out.print(diler.getCardsList());
-                System.out.printf("] => %d\n", diler.getScore());
-                if (diler.isBlackjack()) {
-                    System.out.print("У дилера блэкджек!\n");
-                    if (!player.isBlackjack()) {
-                        System.out.print("У вас - нет!\n");
-                        diler_score++;
-                        System.out.printf("Вы проиграли раунд! Счет %d:%d ", player_score, diler_score);
-                        if (player_score > diler_score) {
-                            System.out.print("в вашу пользу.\n");
-                        }
-                        if (player_score < diler_score) {
-                            System.out.print("в пользу дилера.\n");
-                        }
-                        break;
-                    } else {
-                        System.out.print("У вас - тоже!\n Ничья. Вы забираете ставку обратно.\n");
-                    }
-                }
-
-                while (diler.getScore() < 17) {
-                    card = casino.getCard("diler");
-                    card.open();
-                    card = diler.addCardScore(card);
-                    System.out.print("Дилер открывает карту ");
-                    System.out.print(card.getPrintName());
-                    System.out.print("\nВаши карты: [");
-                    System.out.print(player.getCardsList());
-                    System.out.printf("] => %d\nКарты дилера: [", player.getScore());
-                    System.out.print(diler.getCardsList());
-                    System.out.printf("] => %d\n", diler.getScore());
-                }
-                if (diler.getScore() > Constants.wscore) {
-                    player_score++;
-                    System.out.printf("Вы выиграли раунд! Счет %d:%d ", player_score, diler_score);
-                    if (player_score > diler_score) {
-                        System.out.print("в вашу пользу.");
-                    }
-                    if (player_score < diler_score) {
-                        System.out.print("в пользу дилера.");
-                    }
-                    System.out.print("\n");
-                    break;
+                    continue;
                 } else {
-                    if (player.getScore() > diler.getScore()) {
-                        player_score++;
-                        System.out.printf("Вы выиграли раунд! Счет %d:%d ", player_score, diler_score);
-                    } else {
-                        diler_score++;
-                        System.out.printf("Вы проиграли раунд! Счет %d:%d ", player_score, diler_score);
-                    }
+                    System.out.print("У вас - тоже!\n Ничья. Вы забираете ставку обратно.\n");
+                }
+            }
+            if (player.isBlackjack()) {
+                System.out.print("У вас блэкджек!\n");
+                if (!diler.isBlackjack()) {
+                    System.out.print("У дилера - нет!\n");
+                    diler_score++;
+                    System.out.printf("Вы выиграли раунд! Счет %d:%d ", player_score, diler_score);
                     if (player_score > diler_score) {
                         System.out.print("в вашу пользу.\n");
                     }
                     if (player_score < diler_score) {
                         System.out.print("в пользу дилера.\n");
                     }
+                    continue;
+                } else {
+                    System.out.print("У дилера - тоже!\n Ничья. Вы забираете ставку обратно.\n");
                 }
-                break;
+            }
+
+            while (diler.getScore() < 17) {
+                card = casino.getCard("diler");
+                card.open();
+                card = diler.addCardScore(card);
+                System.out.print("Дилер открывает карту ");
+                System.out.print(card.getPrintName());
+                System.out.print("\nВаши карты: [");
+                System.out.print(player.getCardsList());
+                System.out.printf("] => %d\nКарты дилера: [", player.getScore());
+                System.out.print(diler.getCardsList());
+                System.out.printf("] => %d\n", diler.getScore());
+            }
+            if (diler.getScore() > Constants.wscore) {
+                player_score++;
+                System.out.printf("Вы выиграли раунд! Счет %d:%d ", player_score, diler_score);
+                if (player_score > diler_score) {
+                    System.out.print("в вашу пользу.");
+                }
+                if (player_score < diler_score) {
+                    System.out.print("в пользу дилера.");
+                }
+                System.out.print("\n");
+            } else {
+                if (player.getScore() == diler.getScore()) {
+                    System.out.printf("Ничья! Счет %d:%d\n", player_score, diler_score);
+                    continue;
+                } else if (player.getScore() > diler.getScore()) {
+                    player_score++;
+                    System.out.printf("Вы выиграли раунд! Счет %d:%d ", player_score, diler_score);
+                } else {
+                    diler_score++;
+                    System.out.printf("Вы проиграли раунд! Счет %d:%d ", player_score, diler_score);
+                }
+                if (player_score > diler_score) {
+                    System.out.print("в вашу пользу.\n");
+                }
+                if (player_score < diler_score) {
+                    System.out.print("в пользу дилера.\n");
+                }
             }
 
         }
@@ -295,7 +342,7 @@ class Casino {
                 casin_card_count++;
             }
         }
-        int[] casin_ids = new int[casin_card_count];
+        int[] casin_ids = new int[casin_card_count + 1];
         int casin_ids_i = 0;
         for (int i = 0; i < Constants.decksize; i++) {
             if (bank[i].getOwner() == "casino") {
@@ -304,8 +351,8 @@ class Casino {
             }
         }
         long id = Math.round(Math.random() * (double) casin_card_count);
-        bank[(int) casin_ids[(int) id]].setOwner(new_owner);
-        return bank[(int) casin_ids[(int) id]];
+        bank[casin_ids[(int) id]].setOwner(new_owner);
+        return bank[casin_ids[(int) id]];
     }
 }
 
