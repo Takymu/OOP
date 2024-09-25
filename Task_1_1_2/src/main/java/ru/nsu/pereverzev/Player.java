@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 /**
- * class that will model player behaviour
+ * class that will model player behaviour.
  */
 public class Player {
     int blackjack;
@@ -17,9 +17,11 @@ public class Player {
         score = 0;
         cardcnt = 0;
     }
+
     /**
-     * @return string with the card names, suits and prices
+     * Method returns string with the card names, suits and prices.
      */
+
     public String getCardsList() {
         String s = "";
         int isfirst = 1;
@@ -33,7 +35,11 @@ public class Player {
         }
         return s;
     }
-    // method adds card to player, score increments by the value of the card price
+
+    /**
+     * method adds card to player, score increments by the value of the card price.
+     */
+
     public Card addCardScore(Card card) {
         if (card.getName() == "ace") {
             if (score + card.getPrice() <= Constants.wscore) {
@@ -49,7 +55,11 @@ public class Player {
         pcards.add(card);
         return card;
     }
-    // method returns boolean that symbolise, has player blackjack or not
+
+    /**
+     * method returns boolean that symbolise, has player blackjack or not
+     */
+
     public boolean isBlackjack() {
         if (score == Constants.wscore && cardcnt == 2) {
             blackjack = 1;
@@ -58,7 +68,11 @@ public class Player {
             return false;
         }
     }
-    // returns player's score
+
+    /**
+     * returns player's score
+     */
+
     public int getScore() {
         return score;
     }
