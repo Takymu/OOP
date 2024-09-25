@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.pereverzev","l":"Main"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.pereverzev","l":"Card"},{"p":"ru.nsu.pereverzev","l":"Casino"},{"p":"ru.nsu.pereverzev","l":"IntReader"},{"p":"ru.nsu.pereverzev","l":"Main"},{"p":"ru.nsu.pereverzev","l":"Player"}]
