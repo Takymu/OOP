@@ -3,7 +3,9 @@ package ru.nsu.pereverzev;
 import java.util.ArrayList;
 
 
-// class that will model player behaviour
+/**
+ * class that will model player behaviour
+ */
 public class Player {
     int blackjack;
     int score;
@@ -15,7 +17,9 @@ public class Player {
         score = 0;
         cardcnt = 0;
     }
-    // method returns string with the card names, suits and prices
+    /**
+     * @return string with the card names, suits and prices
+     */
     public String getCardsList() {
         String s = "";
         int isfirst = 1;
