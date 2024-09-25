@@ -35,7 +35,7 @@ class IntReader {
             return lastreaded;
         } else {
             lastreaded = console.nextInt();
-            return  lastreaded;
+            return lastreaded;
         }
     }
 }
@@ -94,8 +94,7 @@ public class Main {
                     System.out.print("]\n");
                 }
             }
-            if (IntReader.getLastreaded() == 2)
-            {
+            if (IntReader.getLastreaded() == 2) {
                 return;
             }
             if (player.getScore() > Constants.wscore) {
