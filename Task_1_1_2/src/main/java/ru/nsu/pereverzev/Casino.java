@@ -1,5 +1,10 @@
 package ru.nsu.pereverzev;
 
+
+/**
+ * class emulates the behaviour of casino.
+ */
+
 public class Casino {
     Card[] bank;
 
@@ -24,23 +29,26 @@ public class Casino {
         bank[start + 12] = new Card(11, suit, "ace");
     }
 
-    public Card getCard(String new_owner) {
-        int casin_card_count = 0;
+    /**
+     * method used to getting yet unused random selected card from deck.
+     */
+    public Card getCard(String newOwner) {
+        int casinCardCount = 0;
         for (int i = 0; i < Constants.decksize; i++) {
             if (bank[i].getOwner() == "casino") {
-                casin_card_count++;
+                casinCardCount++;
             }
         }
-        int[] casin_ids = new int[casin_card_count + 1];
-        int casin_ids_i = 0;
+        int[] casin_ids = new int[casinCardCount + 1];
+        int casinIdsId = 0;
         for (int i = 0; i < Constants.decksize; i++) {
             if (bank[i].getOwner() == "casino") {
-                casin_ids[casin_ids_i] = i;
-                casin_ids_i++;
+                casin_ids[casinIdsId] = i;
+                casinIdsId++;
             }
         }
-        long id = Math.round(Math.random() * (double) casin_card_count);
-        bank[casin_ids[(int) id]].setOwner(new_owner);
+        long id = Math.round(Math.random() * (double) casinCardCount);
+        bank[casin_ids[(int) id]].setOwner(newOwner);
         return bank[casin_ids[(int) id]];
     }
 }

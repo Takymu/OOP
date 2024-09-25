@@ -1,6 +1,9 @@
 package ru.nsu.pereverzev;
 
 
+/**
+ * class emulates the card itself.
+ */
 
 public class Card {
     Suit suit;
@@ -44,6 +47,7 @@ public class Card {
     /**
      * method returns nice name of card in format like "Name Suit X".
      * or says, that card is closed.
+     *
      * @return String, name of the card.
      */
 

@@ -16,6 +16,7 @@ public class IntReader {
 
     /**
      * method call switches input from terminal to string.
+     *
      * @param str - string, that will be used for input emulation, must ends with "2"
      */
 
@@ -35,6 +36,7 @@ public class IntReader {
 
     /**
      * method emulate reading next one-number integer from terminal.
+     *
      * @return int is returned, input buffer shift for one symbol
      */
 

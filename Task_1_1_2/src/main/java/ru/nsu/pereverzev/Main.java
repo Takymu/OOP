@@ -12,7 +12,7 @@ enum Suit {
 }
 
 /**
- * basic game constants, wscore is winning score and decksize is the size of deck
+ * basic game constants, wscore is winning score and decksize is the size of deck.
  */
 
 class Constants {
@@ -21,7 +21,7 @@ class Constants {
 }
 
 /**
- * main function call the play function, that do all I/O stuff
+ * main function call the play function, that do all I/O stuff.
  */
 
 public class Main {
@@ -31,6 +31,10 @@ public class Main {
     public static void main(String[] args) {
         play();
     }
+
+    /**
+     * function that do all the main stuff. For convenience of testing it is not main.
+     */
 
     public static void play() {
         System.out.println("Добро пожаловать в Блэкджэк!");
@@ -55,8 +59,8 @@ public class Main {
             Card dilcard = casino.getCard("diler");
             diler.addCardScore(dilcard);
             System.out.print(diler.getCardsList());
-            System.out.print("\n]\nВаш ход\n-------\nВведите \"1\", чтобы " +
-                    "взять карту, и \"0\", чтобы остановиться...");
+            System.out.print("\n]\nВаш ход\n-------\nВведите \"1\", чтобы "
+                    + "взять карту, и \"0\", чтобы остановиться...");
             while (player.getScore() <= Constants.wscore && IntReader.read() == 1) {
                 card = casino.getCard("player");
                 card.open();
@@ -68,8 +72,8 @@ public class Main {
                 System.out.printf("] => %d\nКарты дилера: [", player.getScore());
                 System.out.print(diler.getCardsList());
                 if (player.getScore() <= Constants.wscore) {
-                    System.out.print("\n]\nВаш ход\n-------\nВведите \"1\", чтобы " +
-                            "взять карту, и \"0\", чтобы остановиться...");
+                    System.out.print("\n]\nВаш ход\n-------\nВведите \"1\", чтобы "
+                            + "взять карту, и \"0\", чтобы остановиться...");
                 } else {
                     System.out.print("]\n");
                 }
