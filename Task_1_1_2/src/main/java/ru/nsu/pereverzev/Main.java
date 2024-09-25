@@ -55,12 +55,8 @@ public class Main {
             Card dilcard = casino.getCard("diler");
             diler.addCardScore(dilcard);
             System.out.print(diler.getCardsList());
-            System.out.print("""
-                    ]
-                    Ваш ход
-                    -------
-                    Введите "1", чтобы взять карту, и "0", чтобы остановиться...
-                    """);
+            System.out.print("\n]\nВаш ход\n-------\nВведите \"1\", чтобы " +
+                    "взять карту, и \"0\", чтобы остановиться...");
             while (player.getScore() <= Constants.wscore && IntReader.read() == 1) {
                 card = casino.getCard("player");
                 card.open();
@@ -72,12 +68,8 @@ public class Main {
                 System.out.printf("] => %d\nКарты дилера: [", player.getScore());
                 System.out.print(diler.getCardsList());
                 if (player.getScore() <= Constants.wscore) {
-                    System.out.print("""
-                            ]
-                            Ваш ход
-                            -------
-                            Введите "1", чтобы взять карту, и "0", чтобы остановиться...
-                            """);
+                    System.out.print("\n]\nВаш ход\n-------\nВведите \"1\", чтобы " +
+                            "взять карту, и \"0\", чтобы остановиться...");
                 } else {
                     System.out.print("]\n");
                 }
