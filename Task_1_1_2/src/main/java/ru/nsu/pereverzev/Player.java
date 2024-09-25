@@ -57,7 +57,7 @@ public class Player {
     }
 
     /**
-     * method returns boolean that symbolise, has player blackjack or not
+     * method returns boolean that symbolise, has player blackjack or not.
      */
 
     public boolean isBlackjack() {
@@ -70,7 +70,7 @@ public class Player {
     }
 
     /**
-     * returns player's score
+     * returns player's score.
      */
 
     public int getScore() {
