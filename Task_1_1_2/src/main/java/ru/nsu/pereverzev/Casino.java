@@ -32,6 +32,7 @@ public class Casino {
     /**
      * method used to getting yet unused random selected card from deck.
      */
+
     public Card getCard(String newOwner) {
         int casinCardCount = 0;
         for (int i = 0; i < Constants.decksize; i++) {
