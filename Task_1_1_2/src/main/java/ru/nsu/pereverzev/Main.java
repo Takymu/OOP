@@ -11,11 +11,18 @@ enum Suit {
     DMNDS
 }
 
+/**
+ * basic game constants, wscore is winning score and decksize is the size of deck
+ */
+
 class Constants {
     public static final int wscore = 21;
     public static final int decksize = 52;
 }
 
+/**
+ * main function call the play function, that do all I/O stuff
+ */
 
 public class Main {
     static int player_score = 0;
@@ -30,7 +37,6 @@ public class Main {
         while (IntReader.getLastreaded() != 2) {
             System.out.printf("Раунд %d\n", player_score + diler_score + 1);
             Player player = new Player();
-            Player diler = new Player();
             Casino casino = new Casino();
             System.out.print("Дилер раздал карты\n    Ваши карты: [");
             Card card = casino.getCard("player");
@@ -44,12 +50,17 @@ public class Main {
             System.out.print("    Карты дилера: [");
             card = casino.getCard("diler");
             card.open();
+            Player diler = new Player();
             card = diler.addCardScore(card);
             Card dilcard = casino.getCard("diler");
             diler.addCardScore(dilcard);
             System.out.print(diler.getCardsList());
-            System.out.print("]\nВаш ход\n-------\nВведите \"1\", чтобы взять карту, и \"0\", чтобы остановиться...\n");
-
+            System.out.print("""
+                    ]
+                    Ваш ход
+                    -------
+                    Введите "1", чтобы взять карту, и "0", чтобы остановиться...
+                    """);
             while (player.getScore() <= Constants.wscore && IntReader.read() == 1) {
                 card = casino.getCard("player");
                 card.open();
@@ -61,7 +72,12 @@ public class Main {
                 System.out.printf("] => %d\nКарты дилера: [", player.getScore());
                 System.out.print(diler.getCardsList());
                 if (player.getScore() <= Constants.wscore) {
-                    System.out.print("]\nВаш ход\n-------\nВведите \"1\", чтобы взять карту, и \"0\", чтобы остановиться...\n");
+                    System.out.print("""
+                            ]
+                            Ваш ход
+                            -------
+                            Введите "1", чтобы взять карту, и "0", чтобы остановиться...
+                            """);
                 } else {
                     System.out.print("]\n");
                 }

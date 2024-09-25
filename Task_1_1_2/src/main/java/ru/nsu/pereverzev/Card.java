@@ -21,8 +21,8 @@ public class Card {
         closed = 0;
     }
 
-    public void setOwner(String new_owner) {
-        owner = new_owner;
+    public void setOwner(String newOwner) {
+        owner = newOwner;
     }
 
     public String getOwner() {
@@ -40,6 +40,12 @@ public class Card {
     public String getName() {
         return name;
     }
+
+    /**
+     * method returns nice name of card in format like "Name Suit X".
+     * or says, that card is closed.
+     * @return String, name of the card.
+     */
 
     public String getPrintName() {
         String s = "";
@@ -77,6 +83,9 @@ public class Card {
                         case 10:
                             s += "Десятка";
                             break;
+                        default:
+                            s += "[Цена карты вне диапазона]";
+                            break;
                     }
                     break;
                 case "jack":
@@ -90,6 +99,9 @@ public class Card {
                     break;
                 case "ace":
                     s += "Туз";
+                    break;
+                default:
+                    s += "[Тип карты не удалось определить]";
                     break;
             }
             switch (suit) {
@@ -105,6 +117,8 @@ public class Card {
                 case DMNDS:
                     s += " Бубны";
                     break;
+                default:
+                    s += " [Масть карты не удалось определить]";
             }
             s = s + " (" + price + ")";
         }
