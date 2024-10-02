@@ -2,9 +2,11 @@ package ru.nsu.pereverzev;
 
 public class Variable extends Expression {
     String varname;
+
     Variable(String name) {
         varname = name;
     }
+
     @Override
     public int eval(String varsAsgn) {
         int i = varsAsgn.indexOf(varname) + varname.length() + 3;
@@ -17,10 +19,12 @@ public class Variable extends Expression {
         }
         return val;
     }
+
     @Override
     public void print() {
         System.out.print(varname);
     }
+
     @Override
     public Expression derivative(String var) {
         if (var == varname) {
