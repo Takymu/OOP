@@ -1,30 +1,30 @@
 package ru.nsu.pereverzev;
 
 public class Sub extends Expression {
-    Expression ex_a;
-    Expression ex_b;
+    Expression exA;
+    Expression exB;
 
     Sub(Expression a, Expression b) {
-        ex_a = a;
-        ex_b = b;
+        exA = a;
+        exB = b;
     }
 
     @Override
     public int eval(String varsAsgn) {
-        return ex_a.eval(varsAsgn) - ex_b.eval(varsAsgn);
+        return exA.eval(varsAsgn) - exB.eval(varsAsgn);
     }
 
     @Override
     public void print() {
         System.out.print("(");
-        ex_a.print();
+        exA.print();
         System.out.print("-");
-        ex_b.print();
+        exB.print();
         System.out.print(")");
     }
 
     @Override
     public Expression derivative(String var) {
-        return new Sub(ex_a.derivative(var), ex_b.derivative(var));
+        return new Sub(exA.derivative(var), exB.derivative(var));
     }
 }
