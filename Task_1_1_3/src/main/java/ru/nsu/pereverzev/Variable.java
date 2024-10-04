@@ -14,7 +14,8 @@ public class Variable extends Expression {
         int bound = varsAsgn.length();
         int wasdot = 0;
         int start = i;
-        while (i < bound && ((varsAsgn.charAt(i) >= '0' && varsAsgn.charAt(i) <= '9') || (varsAsgn.charAt(i) == '.' && wasdot == 0))) {
+        while (i < bound && ((varsAsgn.charAt(i) >= '0' && varsAsgn.charAt(i) <= '9')
+                || (varsAsgn.charAt(i) == '.' && wasdot == 0))) {
             if (varsAsgn.charAt(i) == '.') wasdot = 1;
             i++;
         }
