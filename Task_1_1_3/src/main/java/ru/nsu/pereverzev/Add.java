@@ -1,5 +1,8 @@
 package ru.nsu.pereverzev;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 public class Add extends Expression {
     Expression exA;
     Expression exB;
@@ -10,17 +13,17 @@ public class Add extends Expression {
     }
 
     @Override
-    public double eval(String varsAsgn) {
+    public double eval(String varsAsgn) throws Exception {
         return exA.eval(varsAsgn) + exB.eval(varsAsgn);
     }
 
     @Override
-    public void print() {
-        System.out.print("(");
+    public void print() throws IOException {
+        Output.write("(");
         exA.print();
-        System.out.print("+");
+        Output.write("+");
         exB.print();
-        System.out.print(")");
+        Output.write(")");
     }
 
     @Override

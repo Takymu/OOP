@@ -1,9 +1,11 @@
 package ru.nsu.pereverzev;
 
-public abstract class Expression {
-    public abstract double eval(String varsAsgn);
+import java.io.IOException;
 
-    public abstract void print();
+public abstract class Expression {
+    public abstract double eval(String varsAsgn) throws Exception;
+
+    public abstract void print() throws IOException;
 
     public abstract Expression derivative(String var);
 }

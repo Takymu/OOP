@@ -1,5 +1,7 @@
 package ru.nsu.pereverzev;
 
+import java.io.IOException;
+
 public class Variable extends Expression {
     String varname;
 
@@ -7,10 +9,31 @@ public class Variable extends Expression {
         varname = name;
     }
 
+    private int evalGuard(String varsAsgn) {
+        if(!varsAsgn.contains(varname))
+            return -1;
+        int i = varsAsgn.indexOf(varname) + varname.length();
+        int len = varsAsgn.length();
+        while (i < len && varsAsgn.charAt(i) == ' ') {
+            i++;
+        }
+        if (i==len || varsAsgn.charAt(i) != '=')
+            return -1;
+        i++;
+        while (i < len && varsAsgn.charAt(i) == ' ') {
+            i++;
+        }
+        if (i==len || varsAsgn.charAt(i) <= '0' || varsAsgn.charAt(i) >= '9') {
+            return -1;
+        }
+        return i;
+    }
+
     @Override
-    public double eval(String varsAsgn) {
-        int i = varsAsgn.indexOf(varname) + varname.length() + 3;
-        double val = 0;
+    public double eval(String varsAsgn) throws Exception {
+        int i = evalGuard(varsAsgn);
+        if(i == -1)
+            throw new Exception("invalid eval argument, variable value not found");
         int bound = varsAsgn.length();
         int wasdot = 0;
         int start = i;
@@ -23,8 +46,8 @@ public class Variable extends Expression {
     }
 
     @Override
-    public void print() {
-        System.out.print(varname);
+    public void print() throws IOException {
+        Output.write(varname);
     }
 
     @Override

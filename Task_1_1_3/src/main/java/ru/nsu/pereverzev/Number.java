@@ -1,5 +1,7 @@
 package ru.nsu.pereverzev;
 
+import java.io.IOException;
+
 public class Number extends Expression {
     double value;
 
@@ -13,8 +15,8 @@ public class Number extends Expression {
     }
 
     @Override
-    public void print() {
-        System.out.print(value);
+    public void print() throws IOException {
+        Output.write(Double.toString(value));
     }
 
     @Override
