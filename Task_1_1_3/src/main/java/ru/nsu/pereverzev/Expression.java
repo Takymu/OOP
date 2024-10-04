@@ -1,7 +1,7 @@
 package ru.nsu.pereverzev;
 
 public abstract class Expression {
-    public abstract int eval(String varsAsgn);
+    public abstract double eval(String varsAsgn);
 
     public abstract void print();
 

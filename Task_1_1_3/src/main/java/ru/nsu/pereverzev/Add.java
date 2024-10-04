@@ -10,7 +10,7 @@ public class Add extends Expression {
     }
 
     @Override
-    public int eval(String varsAsgn) {
+    public double eval(String varsAsgn) {
         return exA.eval(varsAsgn) + exB.eval(varsAsgn);
     }
 

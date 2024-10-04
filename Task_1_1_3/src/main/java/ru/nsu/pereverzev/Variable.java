@@ -8,16 +8,17 @@ public class Variable extends Expression {
     }
 
     @Override
-    public int eval(String varsAsgn) {
+    public double eval(String varsAsgn) {
         int i = varsAsgn.indexOf(varname) + varname.length() + 3;
-        int val = 0;
+        double val = 0;
         int bound = varsAsgn.length();
-        while (i < bound && varsAsgn.charAt(i) >= '0' && varsAsgn.charAt(i) <= '9') {
-            val *= 10;
-            val += (varsAsgn.charAt(i) - '0');
+        int wasdot = 0;
+        int start = i;
+        while (i < bound && ((varsAsgn.charAt(i) >= '0' && varsAsgn.charAt(i) <= '9') || (varsAsgn.charAt(i) == '.' && wasdot == 0))) {
+            if (varsAsgn.charAt(i) == '.') wasdot = 1;
             i++;
         }
-        return val;
+        return Double.parseDouble(varsAsgn.substring(start, i));
     }
 
     @Override
