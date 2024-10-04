@@ -241,7 +241,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>eval</h4>
-<pre class="methodSignature">public abstract&nbsp;double&nbsp;eval&#8203;(java.lang.String&nbsp;varsAsgn)</pre>
+<pre class="methodSignature">public abstract&nbsp;double&nbsp;eval&#8203;(java.lang.String&nbsp;varsAsgn)
+                     throws java.lang.Exception</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd>
+</dl>
 </li>
 </ul>
 <a id="print()">
@@ -250,7 +255,12 @@ extends java.lang.Object</pre>
 <ul class="blockList">
 <li class="blockList">
 <h4>print</h4>
-<pre class="methodSignature">public abstract&nbsp;void&nbsp;print()</pre>
+<pre class="methodSignature">public abstract&nbsp;void&nbsp;print()
+                    throws java.io.IOException</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code></dd>
+</dl>
 </li>
 </ul>
 <a id="derivative(java.lang.String)">
