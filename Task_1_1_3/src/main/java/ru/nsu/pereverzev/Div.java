@@ -2,6 +2,9 @@ package ru.nsu.pereverzev;
 
 import java.io.IOException;
 
+/**
+ * expression, that divides two other expressions.
+ */
 public class Div extends Expression {
     Expression exA;
     Expression exB;

@@ -2,6 +2,9 @@ package ru.nsu.pereverzev;
 
 import java.io.IOException;
 
+/**
+ * expression, that multiplies two other expressions.
+ */
 public class Mul extends Expression {
     Expression exA;
     Expression exB;

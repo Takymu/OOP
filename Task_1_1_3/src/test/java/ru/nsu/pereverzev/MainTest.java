@@ -42,7 +42,8 @@ class MainTest {
             Expression e2d = e2.derivative("x");
             e2d.print();
             Output.flush();
-            assertEquals("(((0.0*(x-var1))+(10.0*(1.0-var1)))/((x-var1)*(x-var1)))", baos.toString());
+            assertEquals("(((0.0*(x-var1))+(10.0*(1.0-var1)))/((x-var1)*(x-var1)))",
+                    baos.toString());
             result = e2.eval("x = 1244; var1 = 1239");
             assertEquals(2.0, result);
         } catch (Exception e) {

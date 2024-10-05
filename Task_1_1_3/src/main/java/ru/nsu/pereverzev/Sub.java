@@ -2,6 +2,9 @@ package ru.nsu.pereverzev;
 
 import java.io.IOException;
 
+/**
+ * expression, that subtract two other expressions.
+ */
 public class Sub extends Expression {
     Expression exA;
     Expression exB;

@@ -3,6 +3,9 @@ package ru.nsu.pereverzev;
 import java.io.IOException;
 import java.io.OutputStream;
 
+/**
+ * expression, that adds two other expressions.
+ */
 public class Add extends Expression {
     Expression exA;
     Expression exB;

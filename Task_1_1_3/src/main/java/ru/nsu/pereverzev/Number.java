@@ -2,6 +2,9 @@ package ru.nsu.pereverzev;
 
 import java.io.IOException;
 
+/**
+ * expression, that emulates constant.
+ */
 public class Number extends Expression {
     double value;
 
