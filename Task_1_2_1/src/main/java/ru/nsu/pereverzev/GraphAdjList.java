@@ -27,21 +27,43 @@ public class GraphAdjList implements Graph {
     @Override
     public void addEdge(int start, int end) {
         // TODO exception if no start or no end
-        VertexAdLs vertStart = list.get(start);
+        int idstart = 0;
+        int idend = 0;
+        for(int i = 0; i < list.size(); i++) {
+            VertexAdLs vert = list.get(i);
+            if(vert.getId() == start) {
+                idstart = i;
+                break;
+            }
+        }
+        VertexAdLs vertStart = list.get(idstart);
         vertStart.listAdd(end);
-        list.set(start, vertStart);
+        list.set(idstart, vertStart);
     }
 
     @Override
     public void removeEdge(int start, int end) {
-        VertexAdLs vertStart = list.get(start);
-        vertStart.listRemove(end);
-        list.set(start, vertStart);
+        VertexAdLs vertStart;
+        for(int i = 0; i < list.size(); i++) {
+            vertStart = list.get(i);
+            if(vertStart.getId() == start) {
+                vertStart.listRemove(end);
+                //list.set(start, vertStart);
+                break;
+            }
+        }
     }
 
     @Override
     public ArrayList<Integer> getNeighbours(int vnum) {
-        return list.get(vnum).getNeighbs();
+        VertexAdLs vert;
+        for (VertexAdLs v : list) {
+            vert = v;
+            if (vert.getId() == vnum) {
+                return vert.getNeighbs();
+            }
+        }
+        return null;
     }
 
     @Override
@@ -49,6 +71,10 @@ public class GraphAdjList implements Graph {
         //TODO read the graph
     }
 
+    @Override
+    public int getVertexCount() {
+        return list.size();
+    }
 }
 
 class VertexAdLs {
@@ -72,4 +98,5 @@ class VertexAdLs {
     ArrayList<Integer> getNeighbs() {
         return adjlist;
     }
+
 }

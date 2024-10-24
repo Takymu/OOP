@@ -9,5 +9,6 @@ public interface Graph {
     void removeEdge(int start, int end);
     void readGraph(String filename);
     ArrayList<Integer> getNeighbours(int vnum);
+    int getVertexCount();
 }
 

@@ -88,4 +88,8 @@ public class GraphAdjMatr implements Graph{
     public void readGraph(String filename) {
 
     }
+    @Override
+    public int getVertexCount() {
+        return matrix.size() - 1;
+    }
 }
