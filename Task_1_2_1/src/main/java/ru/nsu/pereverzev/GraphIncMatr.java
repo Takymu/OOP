@@ -6,32 +6,30 @@ import java.util.Collections;
 public class GraphIncMatr implements Graph {
     ArrayList<ArrayList<Integer>> matrix;
     ArrayList<Boolean> validVerts;
+
     GraphIncMatr() {
         validVerts = new ArrayList<Boolean>();
         matrix = new ArrayList<ArrayList<Integer>>();
     }
 
+    /**
+     * adding new vertex with id = vnum.
+     */
     @Override
     public void addVertex(int vnum) {
-        if(vnum >= validVerts.size()) {
+        if (vnum >= validVerts.size()) {
             int len = 0;
             int matheight = matrix.size();
-            if(!matrix.isEmpty()) {
+            if (!matrix.isEmpty()) {
                 len = matrix.get(0).size();
-                matrix.addAll(new ArrayList<ArrayList<Integer>>(
-                        Collections.nCopies(vnum + 1 - matheight, new ArrayList<Integer>(
-                                Collections.nCopies(len, 0))))); // adding new zero filled lines
+                matrix.addAll(new ArrayList<ArrayList<Integer>>(Collections.nCopies(vnum + 1 - matheight, new ArrayList<Integer>(Collections.nCopies(len, 0))))); // adding new zero filled lines
             } else {
                 matrix.add(new ArrayList<Integer>());
                 matrix.add(new ArrayList<Integer>());
             }
-            validVerts.addAll(new ArrayList<Boolean>(
-                    Collections.nCopies(vnum + 1 - matheight, false)));
+            validVerts.addAll(new ArrayList<Boolean>(Collections.nCopies(vnum + 1 - matheight, false)));
             validVerts.set(vnum, true);
         } else {
-//            if (validVerts.get(vnum)) {
-//                // TODO exception, vertex with this id already exist
-//            }
             validVerts.set(vnum, true);
             ArrayList<Integer> row = matrix.get(vnum);
             for (int i = 0; i < row.size(); i++) {
@@ -40,19 +38,19 @@ public class GraphIncMatr implements Graph {
         }
     }
 
+    /**
+     * removing vertex with id = vnum.
+     */
     @Override
     public void removeVertex(int vnum) {
-//        if (vnum >= matrix.size()) {
-//            // TODO exception, vertex isn't exist
-//        }
         validVerts.set(vnum, false);
     }
 
+    /**
+     * adding edge from start to end.
+     */
     @Override
     public void addEdge(int start, int end) {
-//        if (start >= matrix.size() || end >= matrix.size()) {
-//            // TODO exception, start or end isn't exist
-//        }
         for (int i = 0; i < matrix.size(); i++) {
             ArrayList<Integer> row = matrix.get(i);
             if (i == start && start == end) {
@@ -69,12 +67,15 @@ public class GraphIncMatr implements Graph {
         }
     }
 
+    /**
+     * remove edge from start to end.
+     */
     @Override
     public void removeEdge(int start, int end) {
         ArrayList<Integer> startList = matrix.get(start);
         ArrayList<Integer> endList = matrix.get(end);
         int edgeid = 0;
-        if(start == end) {
+        if (start == end) {
             for (int i = 0; i < startList.size(); i++) {
                 if (startList.get(i) == 2) {
                     edgeid = i;
@@ -96,11 +97,9 @@ public class GraphIncMatr implements Graph {
         }
     }
 
-    @Override
-    public void readGraph(String filename) {
-
-    }
-
+    /**
+     * gets neibours of vertex with id = vnum.
+     */
     @Override
     public ArrayList<Integer> getNeighbours(int vnum) {
         ArrayList<Integer> ans = new ArrayList<Integer>();

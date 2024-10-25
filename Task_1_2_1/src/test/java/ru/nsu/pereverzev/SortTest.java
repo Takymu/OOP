@@ -22,7 +22,7 @@ class SortTest {
         graph.addEdge(1,3);
         graph.removeEdge(1,3);
 
-        ArrayList<Integer> sorted = Sort.toposort(graph);
+        ArrayList<Integer> sorted = Utils.toposort(graph);
         int[] expect = new int[]{5,4,1,2,3};
         for (int i = 0; i < expect.length; i++) {
             assertEquals(expect[i], sorted.get(i));
@@ -42,7 +42,7 @@ class SortTest {
         graph.addEdge(4,1);
         graph.addEdge(1,3);
         graph.removeEdge(1,3);
-        ArrayList<Integer> sorted = Sort.toposort(graph);
+        ArrayList<Integer> sorted = Utils.toposort(graph);
         int[] expect = new int[]{5,4,1,2,3};
         for (int i = 0; i < expect.length; i++) {
             assertEquals(expect[i], sorted.get(i));
@@ -62,7 +62,7 @@ class SortTest {
         graph.addEdge(4,1);
         graph.addEdge(1,3);
         graph.removeEdge(1,3);
-        ArrayList<Integer> sorted = Sort.toposort(graph);
+        ArrayList<Integer> sorted = Utils.toposort(graph);
         int[] expect = new int[]{5,4,1,2,3};
         for (int i = 0; i < expect.length; i++) {
             assertEquals(expect[i], sorted.get(i));
