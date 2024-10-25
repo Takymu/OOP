@@ -90,7 +90,7 @@ public class GraphAdjList implements Graph {
 }
 
 /**
- * vertex, one element of adjacency list (with it's own list with connected verts)
+ * vertex, one element of adjacency list (with it's own list with connected verts).
  */
 class VertexAdLs {
     int vnum;

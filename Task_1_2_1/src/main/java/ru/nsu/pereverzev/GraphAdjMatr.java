@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * graph implementation through adjacency matrix
+ * graph implementation through adjacency matrix.
  */
 public class GraphAdjMatr implements Graph {
     ArrayList<ArrayList<Integer>> matrix;
@@ -20,8 +20,7 @@ public class GraphAdjMatr implements Graph {
      */
     @Override
     public void addVertex(int vnum) {
-        if (matrix.size() <= vnum) // in this case we expand matrix to vnum x vnum size
-        {
+        if (matrix.size() <= vnum) {  // in this case we expand matrix to vnum x vnum size
             int dif = vnum - matrix.size() + 1;
             validVerts.addAll(new ArrayList<Boolean>(Collections.nCopies(dif, false)));
             validVerts.set(vnum, true); // make the vertex valid

@@ -7,12 +7,15 @@ import java.util.Collections;
 import java.util.Scanner;
 
 /**
- * class with utilities, such as sort or reading from file
+ * class with utilities, such as sort or reading from file.
  */
 public class Utils {
     static ArrayList<Integer> stack;
     static ArrayList<Boolean> visited;
 
+    /**
+     * read the graph from file, that contains graph in adjacency list format.
+     */
     public static Graph readFromFile(String filename, Graph graph) {
         Scanner scanner;
         try {
@@ -38,6 +41,9 @@ public class Utils {
         return graph;
     }
 
+    /**
+     * topologic sort of the graph, independently of the graph format.
+     */
     public static ArrayList<Integer> toposort(Graph graph) {
         if (graph == null) {
             // TODO exception
@@ -46,7 +52,9 @@ public class Utils {
         stack = new ArrayList<Integer>();
         visited = new ArrayList<Boolean>(Collections.nCopies(vertcnt + 1, false));
         for (int i = 1; i <= vertcnt; i++) {
-            if (!visited.get(i)) dfstoposort(graph, i);
+            if (!visited.get(i)){
+                dfstoposort(graph, i);
+            }
         }
         ArrayList<Integer> answer = new ArrayList<Integer>();
         for (int i = stack.size() - 1; i >= 0; i--) {
