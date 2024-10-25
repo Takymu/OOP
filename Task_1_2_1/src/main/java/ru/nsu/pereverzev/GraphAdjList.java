@@ -25,7 +25,9 @@ public class GraphAdjList implements Graph {
         int i = 0;
         while (i < list.size() && list.get(i).getId() != vnum) {
             i++;
-            if (i == list.size()) return;
+            if (i == list.size()) {
+                return;
+            }
         }
         list.remove(i);
     }
@@ -87,6 +89,9 @@ public class GraphAdjList implements Graph {
     }
 }
 
+/**
+ * vertex, one element of adjacency list (with it's own list with connected verts)
+ */
 class VertexAdLs {
     int vnum;
     ArrayList<Integer> adjlist;

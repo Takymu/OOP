@@ -3,6 +3,9 @@ package ru.nsu.pereverzev;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * graph implementation thought incidence matrix.
+ */
 public class GraphIncMatr implements Graph {
     ArrayList<ArrayList<Integer>> matrix;
     ArrayList<Boolean> validVerts;
@@ -22,12 +25,16 @@ public class GraphIncMatr implements Graph {
             int matheight = matrix.size();
             if (!matrix.isEmpty()) {
                 len = matrix.get(0).size();
-                matrix.addAll(new ArrayList<ArrayList<Integer>>(Collections.nCopies(vnum + 1 - matheight, new ArrayList<Integer>(Collections.nCopies(len, 0))))); // adding new zero filled lines
+                matrix.addAll(new ArrayList<ArrayList<Integer>>(Collections.nCopies(
+                        vnum + 1 - matheight,
+                        new ArrayList<Integer>(Collections.nCopies(len, 0))))
+                ); // adding new zero filled lines
             } else {
                 matrix.add(new ArrayList<Integer>());
                 matrix.add(new ArrayList<Integer>());
             }
-            validVerts.addAll(new ArrayList<Boolean>(Collections.nCopies(vnum + 1 - matheight, false)));
+            validVerts.addAll(new ArrayList<Boolean>(
+                    Collections.nCopies(vnum + 1 - matheight, false)));
             validVerts.set(vnum, true);
         } else {
             validVerts.set(vnum, true);

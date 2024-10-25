@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * class with utilities, such as sort or reading from file
+ */
 public class Utils {
     static ArrayList<Integer> stack;
     static ArrayList<Boolean> visited;

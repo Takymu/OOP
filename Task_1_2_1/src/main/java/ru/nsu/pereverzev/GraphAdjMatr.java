@@ -3,6 +3,9 @@ package ru.nsu.pereverzev;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * graph implementation through adjacency matrix
+ */
 public class GraphAdjMatr implements Graph {
     ArrayList<ArrayList<Integer>> matrix;
     ArrayList<Boolean> validVerts;
