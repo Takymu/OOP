@@ -67,4 +67,25 @@ class SortTest {
             assertEquals(expect[i], sorted.get(i));
         }
     }
+
+    @Test
+    void tsortCycleFinding() {
+        Graph graph = new GraphAdjList();
+        graph.addVertex(1);
+        graph.addVertex(2);
+        graph.addVertex(3);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        graph.addEdge(3, 1);
+        try {
+            Utils.toposort(graph);
+        } catch (graphException ec) {
+            assertEquals(ec.getMessage(), "there is cycle in graph");
+        }
+        try {
+            graph.addVertex(1);
+        } catch (graphException ec) {
+            return;
+        }
+    }
 }
