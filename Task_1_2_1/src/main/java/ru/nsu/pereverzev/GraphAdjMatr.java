@@ -57,7 +57,7 @@ public class GraphAdjMatr implements Graph {
      */
     @Override
     public void addEdge(int start, int end) {
-        if(start > matrix.size() || end > matrix.size()) {
+        if (start > matrix.size() || end > matrix.size()) {
             throw new graphException("there is no such verticies to connect by this edge");
         }
         ArrayList<Integer> temp = matrix.get(start);
@@ -70,7 +70,7 @@ public class GraphAdjMatr implements Graph {
      */
     @Override
     public void removeEdge(int start, int end) {
-        if(start >= matrix.size() || end >= matrix.size()) {
+        if (start >= matrix.size() || end >= matrix.size()) {
             throw new graphException("there is no such verticies to delete edge");
         }
         ArrayList<Integer> temp = matrix.get(start);
@@ -83,7 +83,7 @@ public class GraphAdjMatr implements Graph {
      */
     @Override
     public ArrayList<Integer> getNeighbours(int vnum) {
-        if(!validVerts.get(vnum) || vnum >= matrix.size()) {
+        if (!validVerts.get(vnum) || vnum >= matrix.size()) {
             throw new graphException("there is no such vertex to get neighbours");
         }
         ArrayList<Integer> row = matrix.get(vnum);

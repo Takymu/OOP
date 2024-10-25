@@ -14,7 +14,7 @@ public class GraphAdjList implements Graph {
 
     @Override
     public void addVertex(int vnum) {
-        for(int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId() == vnum) {
                 throw new graphException("vertex with this id already exist");
             }

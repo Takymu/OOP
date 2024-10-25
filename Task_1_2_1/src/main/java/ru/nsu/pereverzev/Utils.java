@@ -48,7 +48,8 @@ public class Utils {
         }
         int vertcnt = graph.getVertexCount();
         ArrayList<Integer> stack = new ArrayList<Integer>();
-        ArrayList<Boolean> visited = new ArrayList<Boolean>(Collections.nCopies(vertcnt + 1, false));
+        ArrayList<Boolean> visited = new ArrayList<Boolean>(
+                Collections.nCopies(vertcnt + 1, false));
         for (int i = 1; i <= vertcnt; i++) {
             if (!visited.get(i)){
                 dfstoposort(graph, i, stack, visited);
@@ -70,7 +71,7 @@ public class Utils {
                 dfstoposort(graph, neigbs.get(i), stack, visited);
             }
         }
-        if(stack.contains(curvert)) {
+        if (stack.contains(curvert)) {
             throw new graphException("there is cycle in graph");
         }
         stack.add(curvert);
