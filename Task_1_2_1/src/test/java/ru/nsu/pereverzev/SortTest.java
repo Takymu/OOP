@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SortTest {
 
@@ -16,14 +16,14 @@ class SortTest {
         graph.addVertex(3);
         graph.addVertex(4);
         graph.addVertex(5);
-        graph.addEdge(1,2);
-        graph.addEdge(2,3);
-        graph.addEdge(4,1);
-        graph.addEdge(1,3);
-        graph.removeEdge(1,3);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        graph.addEdge(4, 1);
+        graph.addEdge(1, 3);
+        graph.removeEdge(1, 3);
 
         ArrayList<Integer> sorted = Utils.toposort(graph);
-        int[] expect = new int[]{5,4,1,2,3};
+        int[] expect = new int[]{5, 4, 1, 2, 3};
         for (int i = 0; i < expect.length; i++) {
             assertEquals(expect[i], sorted.get(i));
         }
@@ -37,13 +37,13 @@ class SortTest {
         graph.addVertex(3);
         graph.addVertex(4);
         graph.addVertex(5);
-        graph.addEdge(1,2);
-        graph.addEdge(2,3);
-        graph.addEdge(4,1);
-        graph.addEdge(1,3);
-        graph.removeEdge(1,3);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        graph.addEdge(4, 1);
+        graph.addEdge(1, 3);
+        graph.removeEdge(1, 3);
         ArrayList<Integer> sorted = Utils.toposort(graph);
-        int[] expect = new int[]{5,4,1,2,3};
+        int[] expect = new int[]{5, 4, 1, 2, 3};
         for (int i = 0; i < expect.length; i++) {
             assertEquals(expect[i], sorted.get(i));
         }
@@ -57,13 +57,13 @@ class SortTest {
         graph.addVertex(3);
         graph.addVertex(4);
         graph.addVertex(5);
-        graph.addEdge(1,2);
-        graph.addEdge(2,3);
-        graph.addEdge(4,1);
-        graph.addEdge(1,3);
-        graph.removeEdge(1,3);
+        graph.addEdge(1, 2);
+        graph.addEdge(2, 3);
+        graph.addEdge(4, 1);
+        graph.addEdge(1, 3);
+        graph.removeEdge(1, 3);
         ArrayList<Integer> sorted = Utils.toposort(graph);
-        int[] expect = new int[]{5,4,1,2,3};
+        int[] expect = new int[]{5, 4, 1, 2, 3};
         for (int i = 0; i < expect.length; i++) {
             assertEquals(expect[i], sorted.get(i));
         }

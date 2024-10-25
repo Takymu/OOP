@@ -1,15 +1,13 @@
 package ru.nsu.pereverzev;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import org.junit.jupiter.api.Test;
 
 class ReadTest {
 
@@ -33,7 +31,7 @@ class ReadTest {
         assertNotEquals(graph, null);
 
         ArrayList<Integer> sorted = Utils.toposort(graph);
-        int[] expect = new int[]{5,4,1,2,3};
+        int[] expect = new int[]{5, 4, 1, 2, 3};
         for (int i = 0; i < expect.length; i++) {
             assertEquals(expect[i], sorted.get(i));
         }
