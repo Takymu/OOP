@@ -87,38 +87,40 @@ public class GraphAdjList implements Graph {
     public int getVertexCount() {
         return list.size();
     }
-}
 
-/**
- * vertex, one element of adjacency list (with it's own list with connected verts).
- */
-class VertexAdLs {
-    int vnum;
-    ArrayList<Integer> adjlist;
+    /**
+     * vertex, one element of adjacency list (with it's own list with connected verts).
+     */
+    static private class VertexAdLs {
+        int vnum;
+        ArrayList<Integer> adjlist;
 
-    VertexAdLs(int vertNum) {
-        vnum = vertNum;
-        adjlist = new ArrayList<Integer>();
-    }
-
-    int getId() {
-        return vnum;
-    }
-
-    void listAdd(int vertNum) {
-        adjlist.add(vertNum);
-    }
-
-    void listRemove(int vertNum) {
-        int i = 0;
-        while (adjlist.get(i) != vertNum) {
-            i++;
+        VertexAdLs(int vertNum) {
+            vnum = vertNum;
+            adjlist = new ArrayList<Integer>();
         }
-        adjlist.remove(i);
-    }
 
-    ArrayList<Integer> getNeighbs() {
-        return adjlist;
-    }
+        int getId() {
+            return vnum;
+        }
 
+        void listAdd(int vertNum) {
+            adjlist.add(vertNum);
+        }
+
+        void listRemove(int vertNum) {
+            int i = 0;
+            while (adjlist.get(i) != vertNum) {
+                i++;
+            }
+            adjlist.remove(i);
+        }
+
+        ArrayList<Integer> getNeighbs() {
+            return adjlist;
+        }
+
+    }
 }
+
+
