@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -137,6 +137,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">GraphAdjList</span>
 extends java.lang.Object
 implements <a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a></pre>
+<div class="block">this class implements graph interface using adjacency list.</div>
 </li>
 </ul>
 </div>
@@ -161,7 +162,9 @@ implements <a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a>
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(int,int)">addEdge</a></span>&#8203;(int&nbsp;start,
        int&nbsp;end)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">method for edge adding.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -171,7 +174,9 @@ implements <a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.ArrayList&lt;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNeighbours(int)">getNeighbours</a></span>&#8203;(int&nbsp;vnum)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">method returns list of neighbours of the vertex, pointed by vnum.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
@@ -180,19 +185,18 @@ implements <a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readGraph(java.lang.String)">readGraph</a></span>&#8203;(java.lang.String&nbsp;filename)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(int,int)">removeEdge</a></span>&#8203;(int&nbsp;start,
+          int&nbsp;end)</code></th>
+<td class="colLast">
+<div class="block">method for edge removing.</div>
+</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(int,int)">removeEdge</a></span>&#8203;(int&nbsp;start,
-          int&nbsp;end)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(int)">removeVertex</a></span>&#8203;(int&nbsp;vnum)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">method for vertex removing, find vertex with id = vnum and removes it.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -238,6 +242,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a>
 <li class="blockList">
 <h4>removeVertex</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;removeVertex&#8203;(int&nbsp;vnum)</pre>
+<div class="block">method for vertex removing, find vertex with id = vnum and removes it.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#removeVertex(int)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a></code></dd>
@@ -252,6 +257,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a>
 <h4>addEdge</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;addEdge&#8203;(int&nbsp;start,
                     int&nbsp;end)</pre>
+<div class="block">method for edge adding. Finds vertex with id = start and adds end to it's list.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#addEdge(int,int)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a></code></dd>
@@ -266,6 +272,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a>
 <h4>removeEdge</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(int&nbsp;start,
                        int&nbsp;end)</pre>
+<div class="block">method for edge removing. Same as addEdge, but removes vertex from list.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#removeEdge(int,int)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a></code></dd>
@@ -279,22 +286,10 @@ implements <a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a>
 <li class="blockList">
 <h4>getNeighbours</h4>
 <pre class="methodSignature">public&nbsp;java.util.ArrayList&lt;java.lang.Integer&gt;&nbsp;getNeighbours&#8203;(int&nbsp;vnum)</pre>
+<div class="block">method returns list of neighbours of the vertex, pointed by vnum.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Graph.html#getNeighbours(int)">getNeighbours</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a></code></dd>
-</dl>
-</li>
-</ul>
-<a id="readGraph(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>readGraph</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;readGraph&#8203;(java.lang.String&nbsp;filename)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#readGraph(java.lang.String)">readGraph</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.pereverzev">Graph</a></code></dd>
 </dl>
 </li>
 </ul>
