@@ -33,6 +33,9 @@ public class GraphAdjMatr implements Graph {
                 matrix.set(i, temp);
             } // adding new columns to old rows
         } else {
+            if (validVerts.get(vnum)) {
+                throw new graphException("vertex with this id already exist");
+            }
             validVerts.set(vnum, true);
         }
     }
@@ -54,6 +57,9 @@ public class GraphAdjMatr implements Graph {
      */
     @Override
     public void addEdge(int start, int end) {
+        if(start > matrix.size() || end > matrix.size()) {
+            throw new graphException("there is no such verticies to connect by this edge");
+        }
         ArrayList<Integer> temp = matrix.get(start);
         temp.set(end, 1); // or increment existing value? Depends of multigraph allowness
         matrix.set(start, temp);
@@ -64,6 +70,9 @@ public class GraphAdjMatr implements Graph {
      */
     @Override
     public void removeEdge(int start, int end) {
+        if(start >= matrix.size() || end >= matrix.size()) {
+            throw new graphException("there is no such verticies to delete edge");
+        }
         ArrayList<Integer> temp = matrix.get(start);
         temp.set(end, 0);
         matrix.set(start, temp);
@@ -74,6 +83,9 @@ public class GraphAdjMatr implements Graph {
      */
     @Override
     public ArrayList<Integer> getNeighbours(int vnum) {
+        if(!validVerts.get(vnum) || vnum >= matrix.size()) {
+            throw new graphException("there is no such vertex to get neighbours");
+        }
         ArrayList<Integer> row = matrix.get(vnum);
         ArrayList<Integer> neibs = new ArrayList<>();
         for (int i = 0; i < matrix.size(); i++) {

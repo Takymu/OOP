@@ -14,6 +14,11 @@ public class GraphAdjList implements Graph {
 
     @Override
     public void addVertex(int vnum) {
+        for(int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == vnum) {
+                throw new graphException("vertex with this id already exist");
+            }
+        }
         list.add(new VertexAdLs(vnum));
     }
 
@@ -46,6 +51,9 @@ public class GraphAdjList implements Graph {
                 idstart = i;
                 break;
             }
+            if (i == list.size() - 1) {
+                throw new graphException("there is no such verticies to connect");
+            }
         }
         VertexAdLs vertStart = list.get(idstart);
         vertStart.listAdd(end);
@@ -64,6 +72,9 @@ public class GraphAdjList implements Graph {
                 vertStart.listRemove(end);
                 //list.set(start, vertStart);
                 break;
+            }
+            if (i == list.size() - 1) {
+                throw new graphException("there is no such verticies or edge");
             }
         }
     }
@@ -109,6 +120,9 @@ public class GraphAdjList implements Graph {
         }
 
         void listRemove(int vertNum) {
+            if (!adjlist.contains(vertNum)) {
+                throw new graphException("there is no such verticies in vertex list");
+            }
             int i = 0;
             while (adjlist.get(i) != vertNum) {
                 i++;

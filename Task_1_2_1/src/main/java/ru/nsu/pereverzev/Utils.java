@@ -10,8 +10,6 @@ import java.util.Scanner;
  * class with utilities, such as sort or reading from file.
  */
 public class Utils {
-    static ArrayList<Integer> stack;
-    static ArrayList<Boolean> visited;
 
     /**
      * read the graph from file, that contains graph in adjacency list format.
@@ -46,14 +44,14 @@ public class Utils {
      */
     public static ArrayList<Integer> toposort(Graph graph) {
         if (graph == null) {
-            // TODO exception
+            throw new graphException("graph is null, nothing to sort!");
         }
         int vertcnt = graph.getVertexCount();
-        stack = new ArrayList<Integer>();
-        visited = new ArrayList<Boolean>(Collections.nCopies(vertcnt + 1, false));
+        ArrayList<Integer> stack = new ArrayList<Integer>();
+        ArrayList<Boolean> visited = new ArrayList<Boolean>(Collections.nCopies(vertcnt + 1, false));
         for (int i = 1; i <= vertcnt; i++) {
             if (!visited.get(i)){
-                dfstoposort(graph, i);
+                dfstoposort(graph, i, stack, visited);
             }
         }
         ArrayList<Integer> answer = new ArrayList<Integer>();
@@ -63,13 +61,17 @@ public class Utils {
         return answer;
     }
 
-    private static void dfstoposort(Graph graph, int curvert) {
+    private static void dfstoposort(Graph graph, int curvert,
+                                    ArrayList<Integer> stack, ArrayList<Boolean> visited) {
         visited.add(curvert, true);
         ArrayList<Integer> neigbs = graph.getNeighbours(curvert);
         for (int i = 0; i < neigbs.size(); i++) {
             if (!visited.get(neigbs.get(i))) {
-                dfstoposort(graph, neigbs.get(i));
+                dfstoposort(graph, neigbs.get(i), stack, visited);
             }
+        }
+        if(stack.contains(curvert)) {
+            throw new graphException("there is cycle in graph");
         }
         stack.add(curvert);
     }
