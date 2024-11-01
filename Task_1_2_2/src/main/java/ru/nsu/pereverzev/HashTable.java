@@ -7,15 +7,27 @@ public class HashTable <K,V> implements Iterable<Pair<K, V>>{
     ArrayList<LinkedList<Pair<K, V>>> table;
     HashTable() {
         elcnt = 0;
-        table = new ArrayList<>(Collections.nCopies(20, null));
+        table = new ArrayList<>(Collections.nCopies(4, null));
     }
     public void add(K key, V value) {
         elcnt++;
         if(elcnt > table.size() / 2) {
-            ArrayList<LinkedList<Pair<K, V>>> newTable = new ArrayList<>(table.size() * 2);
+            ArrayList<LinkedList<Pair<K, V>>> newTable = new ArrayList<>(
+                    Collections.nCopies(table.size() * 2, null));
             Iterator<Pair<K, V>> iter = iterator();
-            // TODO iterate by the old table, recalculate hashes of all
-            //      the keys and write key-val pairs into new table
+            while (iter.hasNext()) {
+                Pair<K, V> pair = iter.next();
+                int id = pair.getKey().hashCode() % newTable.size();
+                LinkedList<Pair<K, V>> bucket = newTable.get(id);
+                if (bucket == null) {
+                    LinkedList<Pair<K, V>> list = new LinkedList<>();
+                    list.add(pair);
+                    newTable.set(id, list);
+                } else {
+                    bucket.add(pair);
+                }
+            }
+            table = newTable;
         }
         int id = key.hashCode() % table.size();
         LinkedList<Pair<K, V>> bucket = table.get(id);

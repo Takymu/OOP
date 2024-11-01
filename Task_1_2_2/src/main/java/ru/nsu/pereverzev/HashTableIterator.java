@@ -23,7 +23,7 @@ public class HashTableIterator<K, V> implements Iterator<Pair<K, V>> {
         if (curBuckIter.hasNext()) {
             return true;
         } else {
-            while (curBuckId < table.size()) {
+            while (curBuckId < table.size() - 1) {
                 curBuckId++;
                 curList = table.get(curBuckId);
                 if(curList == null) {
@@ -33,7 +33,13 @@ public class HashTableIterator<K, V> implements Iterator<Pair<K, V>> {
                     break;
                 }
             }
-            return curBuckId != table.size();
+
+            if (curBuckId != table.size()-1) {
+                curBuckIter = table.get(curBuckId).iterator();
+                return true;
+            } else {
+                return false;
+            }
         }
     }
     public Pair<K, V> next() {
