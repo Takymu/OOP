@@ -2,11 +2,15 @@ package ru.nsu.pereverzev;
 
 import java.util.*;
 
+import static java.lang.Math.abs;
+
 public class HashTable <K,V> implements Iterable<Pair<K, V>>{
     int elcnt;
+    Semaphore semaphore;
     ArrayList<LinkedList<Pair<K, V>>> table;
     HashTable() {
         elcnt = 0;
+        semaphore = new Semaphore();
         table = new ArrayList<>(Collections.nCopies(4, null));
     }
     public void add(K key, V value) {
@@ -14,9 +18,7 @@ public class HashTable <K,V> implements Iterable<Pair<K, V>>{
         if(elcnt > table.size() / 2) {
             ArrayList<LinkedList<Pair<K, V>>> newTable = new ArrayList<>(
                     Collections.nCopies(table.size() * 2, null));
-            Iterator<Pair<K, V>> iter = iterator();
-            while (iter.hasNext()) {
-                Pair<K, V> pair = iter.next();
+            for (Pair<K, V> pair : this) {
                 int id = pair.getKey().hashCode() % newTable.size();
                 LinkedList<Pair<K, V>> bucket = newTable.get(id);
                 if (bucket == null) {
@@ -29,7 +31,7 @@ public class HashTable <K,V> implements Iterable<Pair<K, V>>{
             }
             table = newTable;
         }
-        int id = key.hashCode() % table.size();
+        int id = abs(abs(key.hashCode())) % table.size();
         LinkedList<Pair<K, V>> bucket = table.get(id);
         if (bucket == null) {
             LinkedList<Pair<K, V>> list = new LinkedList<>();
@@ -41,7 +43,7 @@ public class HashTable <K,V> implements Iterable<Pair<K, V>>{
     }
 
     public void remove(K key, V value) {
-        int id = key.hashCode() % table.size();
+        int id = abs(abs(key.hashCode())) % table.size();
         LinkedList<Pair<K, V>> bucket = table.get(id);
         if (bucket == null) {
             throw new HashTableException("no such element to remove from table");
@@ -56,7 +58,7 @@ public class HashTable <K,V> implements Iterable<Pair<K, V>>{
     }
 
     public V getValue(K key) {
-        int id = key.hashCode() % table.size();
+        int id = abs(key.hashCode()) % table.size();
         if (table.get(id) == null) {
             return null;
         } else {
@@ -70,11 +72,99 @@ public class HashTable <K,V> implements Iterable<Pair<K, V>>{
     }
 
     public void updateValue(K key, V value) {
+        int id = abs(key.hashCode()) % table.size();
+        List<Pair<K, V>> bucket = table.get(id);
+        if (bucket == null) {
+            throw new HashTableException("no value to this key");
+        } else {
+            Pair<K, V> pair = null;
+            for (int i = 0; i < bucket.size(); i++) {
+                pair = bucket.get(i);
+                if (pair.getKey() == key) {
+                    pair.setVal(value);
+                    bucket.set(i, pair);
+                    break;
+                }
+            }
+        }
+    }
 
+    public boolean existValue(K key) {
+        int id = abs(key.hashCode()) % table.size();
+        List<Pair<K, V>> bucket = table.get(id);
+        if (bucket == null) {
+            return false;
+        } else {
+            for (Pair<K, V> pair : table.get(id)) {
+                if (pair.getKey() == key) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     @Override
     public Iterator<Pair<K, V>> iterator() {
-        return new HashTableIterator<>(table);
+        return new HashTableIterator<>(table, semaphore);
     }
+
+    public String toString() {
+        String str = "{";
+        int cnt = 0;
+        for (Pair<K, V> pair : this) {
+            if(cnt == 1) {
+                str = str.concat(", ");
+            }
+            str = str.concat("'" + pair.getKey().toString() + "': " + pair.getVal().toString());
+            cnt = 1;
+        }
+        str = str.concat("}");
+        return str;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != getClass()) {
+            return false;
+        }
+        Iterator<Pair<K, V>> iter = iterator();
+        HashTable<K, V> tableThat = (HashTable<K, V>)obj;
+        while (iter.hasNext()) {
+            Pair<K, V> pair = iter.next();
+            if(!tableThat.existValue(pair.getKey())) {
+                return false;
+            }
+            if(tableThat.getValue(pair.getKey()) != pair.value) {
+                return false;
+            }
+        }
+        iter = tableThat.iterator();
+        while (iter.hasNext()) {
+            Pair<K, V> pair = iter.next();
+            if(!this.existValue(pair.getKey())) {
+                return false;
+            }
+            if(this.getValue(pair.getKey()) != pair.value) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public class Semaphore {
+        int iterProcessCount;
+        Semaphore() {
+            iterProcessCount = 0;
+        }
+        public void increment() {
+            iterProcessCount++;
+        }
+        public void decrement() {
+            iterProcessCount--;
+        }
+    }
+
 }
