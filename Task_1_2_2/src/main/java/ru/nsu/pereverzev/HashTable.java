@@ -4,10 +4,10 @@ import static java.lang.Math.abs;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.ConcurrentModificationException;
-import java.util.List;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * hash table class.
@@ -27,7 +27,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * adding new element to the hash table.
      */
     public void add(K key, V value) {
-        if(semaphore.isIterating()) {
+        if (semaphore.isIterating()) {
             throw new ConcurrentModificationException("trying to add while iterating");
         }
         elcnt++;
@@ -61,7 +61,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * remove element by key and value.
      */
     public void remove(K key, V value) {
-        if(semaphore.isIterating()) {
+        if (semaphore.isIterating()) {
             throw new ConcurrentModificationException("trying to remove while iterating");
         }
         int id = abs(abs(key.hashCode())) % table.size();
@@ -99,7 +99,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * update value founded by the key.
      */
     public void updateValue(K key, V value) {
-        if(semaphore.isIterating()) {
+        if (semaphore.isIterating()) {
             throw new ConcurrentModificationException("trying to update while iterating");
         }
         int id = abs(key.hashCode()) % table.size();

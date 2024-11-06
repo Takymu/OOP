@@ -15,7 +15,8 @@ public class HashTableIterator<K, V> implements Iterator<Pair<K, V>> {
     LinkedList<Pair<K, V>> curList;
     Iterator<Pair<K, V>> curBuckIter;
 
-    HashTableIterator(ArrayList<LinkedList<Pair<K, V>>> thisTable, HashTable<K, V>.Semaphore semaphore) {
+    HashTableIterator(ArrayList<LinkedList<Pair<K, V>>> thisTable,
+                      HashTable<K, V>.Semaphore semaphore) {
         curBuckId = 0;
         table = thisTable;
         semph = semaphore;
@@ -64,7 +65,9 @@ public class HashTableIterator<K, V> implements Iterator<Pair<K, V>> {
      * switching to the next element.
      */
     public Pair<K, V> next() {
-        if (!hasNext()) return null;
+        if (!hasNext()) {
+            return null;
+        }
         return curBuckIter.next();
     }
 }

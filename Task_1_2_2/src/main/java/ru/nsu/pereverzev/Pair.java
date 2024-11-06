@@ -1,5 +1,8 @@
 package ru.nsu.pereverzev;
 
+/**
+ * simple class that is just key and value pair.
+ */
 public class Pair<K, V> {
     K key;
     V value;
