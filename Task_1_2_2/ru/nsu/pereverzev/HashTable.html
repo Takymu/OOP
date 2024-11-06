@@ -137,6 +137,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <pre>public class <span class="typeNameLabel">HashTable&lt;K,&#8203;V&gt;</span>
 extends java.lang.Object
 implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pereverzev">Pair</a>&lt;K,&#8203;V&gt;&gt;</pre>
+<div class="block">hash table class.</div>
 </li>
 </ul>
 </div>
@@ -160,7 +161,9 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="HashTable.Semaphore.html" title="class in ru.nsu.pereverzev">HashTable.Semaphore</a></span></code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">class that is used for detecting concurrent modification.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -184,7 +187,9 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add(K,V)">add</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
    <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">adding new element to the hash table.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -194,12 +199,16 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#existValue(K)">existValue</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">returns true if there exist value with this key in table.</div>
+</td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="HashTable.html" title="type parameter in HashTable">V</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getValue(K)">getValue</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">get value by the key.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="Pair.html" title="class in ru.nsu.pereverzev">Pair</a>&lt;<a href="HashTable.html" title="type parameter in HashTable">K</a>,&#8203;<a href="HashTable.html" title="type parameter in HashTable">V</a>&gt;&gt;</code></td>
@@ -210,18 +219,24 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(K,V)">remove</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
       <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">remove element by key and value.</div>
+</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">method that converts table to string view.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateValue(K,V)">updateValue</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
            <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">update value founded by the key.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -264,6 +279,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <h4>add</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;add&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
                 <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</pre>
+<div class="block">adding new element to the hash table.</div>
 </li>
 </ul>
 <a id="remove(java.lang.Object,java.lang.Object)">
@@ -276,6 +292,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <h4>remove</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;remove&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
                    <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</pre>
+<div class="block">remove element by key and value.</div>
 </li>
 </ul>
 <a id="getValue(java.lang.Object)">
@@ -287,6 +304,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <li class="blockList">
 <h4>getValue</h4>
 <pre class="methodSignature">public&nbsp;<a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;getValue&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key)</pre>
+<div class="block">get value by the key.</div>
 </li>
 </ul>
 <a id="updateValue(java.lang.Object,java.lang.Object)">
@@ -299,6 +317,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <h4>updateValue</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;updateValue&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
                         <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</pre>
+<div class="block">update value founded by the key.</div>
 </li>
 </ul>
 <a id="existValue(java.lang.Object)">
@@ -310,6 +329,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <li class="blockList">
 <h4>existValue</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;existValue&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key)</pre>
+<div class="block">returns true if there exist value with this key in table.</div>
 </li>
 </ul>
 <a id="iterator()">
@@ -332,6 +352,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.pere
 <li class="blockList">
 <h4>toString</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
+<div class="block">method that converts table to string view.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
