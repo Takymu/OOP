@@ -1,11 +1,13 @@
 package ru.nsu.pereverzev;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import org.junit.jupiter.api.Test;
-
-import java.net.Inet4Address;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class HashTableTest {
 
@@ -49,6 +51,29 @@ class HashTableTest {
         assertEquals(t1, t2);
         t1.updateValue("ky2", "valgwo");
         assertNotEquals(t1, t2);
+    }
+
+    @Test
+    void t4concMod() {
+        HashTable<String, Integer> table = new HashTable<String, Integer>();
+        table.add("one", 1);
+        table.add("ttwo", 22);
+        table.add("two", 2);
+        table.add("three", 3);
+        table.add("five", 5);
+        Iterator<Pair<String, Integer>> iter = table.iterator();
+        iter.next();
+        try {
+            table.updateValue("three", 11);
+        } catch (ConcurrentModificationException e) {
+            System.out.print(e.getMessage());
+            System.out.print('\n');
+        }
+        while (iter.hasNext()) {
+            iter.next();
+        }
+        table.add("another", 3);
+        System.out.print(table);
 
     }
 }
