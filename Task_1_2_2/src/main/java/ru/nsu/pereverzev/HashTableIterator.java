@@ -21,6 +21,7 @@ public class HashTableIterator<K, V> implements Iterator<Pair<K, V>> {
         curBuckId = 0;
         table = thisTable;
         hashTable = htable;
+        savedModCount = hashTable.getModCount();
         curList = table.get(curBuckId);
         while ((curBuckId < table.size() - 1) && curList == null) {
             curBuckId++;

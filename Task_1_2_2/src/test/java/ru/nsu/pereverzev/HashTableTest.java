@@ -65,12 +65,10 @@ class HashTableTest {
         iter.next();
         try {
             table.updateValue("three", 11);
+            iter.next();
         } catch (ConcurrentModificationException e) {
             System.out.print(e.getMessage());
             System.out.print('\n');
-        }
-        while (iter.hasNext()) {
-            iter.next();
         }
         table.add("another", 3);
         System.out.print(table);
