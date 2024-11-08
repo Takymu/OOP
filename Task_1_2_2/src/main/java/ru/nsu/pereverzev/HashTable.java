@@ -14,22 +14,23 @@ import java.util.List;
  */
 public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     int elcnt;
-    Semaphore semaphore;
+    int modcnt;
     ArrayList<LinkedList<Pair<K, V>>> table;
 
     HashTable() {
         elcnt = 0;
-        semaphore = new Semaphore();
+        modcnt = 0;
         table = new ArrayList<>(Collections.nCopies(4, null));
     }
 
     /**
      * adding new element to the hash table.
      */
+    public int getModCount() {
+        return modcnt;
+    }
+
     public void add(K key, V value) {
-        if (semaphore.isIterating()) {
-            throw new ConcurrentModificationException("trying to add while iterating");
-        }
         elcnt++;
         if (elcnt > table.size() / 2) {
             ArrayList<LinkedList<Pair<K, V>>> newTable = new ArrayList<>(Collections.nCopies(table.size() * 2, null));
@@ -61,9 +62,6 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * remove element by key and value.
      */
     public void remove(K key, V value) {
-        if (semaphore.isIterating()) {
-            throw new ConcurrentModificationException("trying to remove while iterating");
-        }
         int id = abs(abs(key.hashCode())) % table.size();
         LinkedList<Pair<K, V>> bucket = table.get(id);
         if (bucket == null) {
@@ -99,9 +97,6 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * update value founded by the key.
      */
     public void updateValue(K key, V value) {
-        if (semaphore.isIterating()) {
-            throw new ConcurrentModificationException("trying to update while iterating");
-        }
         int id = abs(key.hashCode()) % table.size();
         List<Pair<K, V>> bucket = table.get(id);
         if (bucket == null) {
@@ -139,7 +134,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
 
     @Override
     public Iterator<Pair<K, V>> iterator() {
-        return new HashTableIterator<>(table, semaphore);
+        return new HashTableIterator<>(table, this);
     }
 
     /**
@@ -194,24 +189,6 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     /**
      * class that is used for detecting concurrent modification.
      */
-    public class Semaphore {
-        int iterProcessCount;
 
-        Semaphore() {
-            iterProcessCount = 0;
-        }
-
-        public boolean isIterating() {
-            return iterProcessCount > 0;
-        }
-
-        public void increment() {
-            iterProcessCount++;
-        }
-
-        public void decrement() {
-            iterProcessCount--;
-        }
-    }
 
 }

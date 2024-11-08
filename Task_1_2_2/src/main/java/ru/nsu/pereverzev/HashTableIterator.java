@@ -1,6 +1,7 @@
 package ru.nsu.pereverzev;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -10,18 +11,16 @@ import java.util.LinkedList;
 public class HashTableIterator<K, V> implements Iterator<Pair<K, V>> {
     ArrayList<LinkedList<Pair<K, V>>> table;
     int curBuckId;
-    HashTable<K, V>.Semaphore semph;
-    boolean isIterating;
+    HashTable<K, V> hashTable;
+    int savedModCount;
     LinkedList<Pair<K, V>> curList;
     Iterator<Pair<K, V>> curBuckIter;
 
     HashTableIterator(ArrayList<LinkedList<Pair<K, V>>> thisTable,
-                      HashTable<K, V>.Semaphore semaphore) {
+                      HashTable<K, V> htable) {
         curBuckId = 0;
         table = thisTable;
-        semph = semaphore;
-        isIterating = true;
-        semph.increment();
+        hashTable = htable;
         curList = table.get(curBuckId);
         while ((curBuckId < table.size() - 1) && curList == null) {
             curBuckId++;
@@ -34,6 +33,9 @@ public class HashTableIterator<K, V> implements Iterator<Pair<K, V>> {
      * check if table has the next element.
      */
     public boolean hasNext() {
+        if(hashTable.getModCount() != savedModCount) {
+            throw new ConcurrentModificationException("hash table was modified");
+        }
         if (curBuckIter.hasNext()) {
             return true;
         } else {
@@ -52,10 +54,6 @@ public class HashTableIterator<K, V> implements Iterator<Pair<K, V>> {
                 curBuckIter = table.get(curBuckId).iterator();
                 return true;
             } else {
-                if (isIterating) {
-                    isIterating = false;
-                    semph.decrement();
-                }
                 return false;
             }
         }
