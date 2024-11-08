@@ -55,12 +55,14 @@ class HashTableTest {
 
     @Test
     void t4concMod() {
+
         HashTable<String, Integer> table = new HashTable<String, Integer>();
         table.add("one", 1);
         table.add("ttwo", 22);
         table.add("two", 2);
         table.add("three", 3);
         table.add("five", 5);
+
         Iterator<Pair<String, Integer>> iter = table.iterator();
         iter.next();
         try {

@@ -13,9 +13,9 @@ import java.util.List;
  * hash table class.
  */
 public class HashTable<K, V> implements Iterable<Pair<K, V>> {
-    int elcnt;
-    int modcnt;
-    ArrayList<LinkedList<Pair<K, V>>> table;
+    private int elcnt;
+    private int modcnt;
+    private ArrayList<LinkedList<Pair<K, V>>> table;
 
     HashTable() {
         elcnt = 0;
@@ -23,13 +23,13 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         table = new ArrayList<>(Collections.nCopies(4, null));
     }
 
-    /**
-     * adding new element to the hash table.
-     */
     public int getModCount() {
         return modcnt;
     }
 
+    /**
+     * adding new element to the hash table.
+     */
     public void add(K key, V value) {
         elcnt++;
         modcnt++;

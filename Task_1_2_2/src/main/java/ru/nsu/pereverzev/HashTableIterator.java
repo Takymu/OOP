@@ -9,12 +9,12 @@ import java.util.LinkedList;
  * implementation of iterator for the hash table.
  */
 public class HashTableIterator<K, V> implements Iterator<Pair<K, V>> {
-    ArrayList<LinkedList<Pair<K, V>>> table;
-    int curBuckId;
-    HashTable<K, V> hashTable;
-    int savedModCount;
-    LinkedList<Pair<K, V>> curList;
-    Iterator<Pair<K, V>> curBuckIter;
+    private ArrayList<LinkedList<Pair<K, V>>> table;
+    private int curBuckId;
+    private HashTable<K, V> hashTable;
+    private int savedModCount;
+    private LinkedList<Pair<K, V>> curList;
+    private Iterator<Pair<K, V>> curBuckIter;
 
     HashTableIterator(ArrayList<LinkedList<Pair<K, V>>> thisTable,
                       HashTable<K, V> htable) {
