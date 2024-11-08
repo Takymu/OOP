@@ -32,6 +32,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
 
     public void add(K key, V value) {
         elcnt++;
+        modcnt++;
         if (elcnt > table.size() / 2) {
             ArrayList<LinkedList<Pair<K, V>>> newTable = new ArrayList<>(Collections.nCopies(table.size() * 2, null));
             for (Pair<K, V> pair : this) {
@@ -62,6 +63,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * remove element by key and value.
      */
     public void remove(K key, V value) {
+        modcnt++;
         int id = abs(abs(key.hashCode())) % table.size();
         LinkedList<Pair<K, V>> bucket = table.get(id);
         if (bucket == null) {
@@ -97,6 +99,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * update value founded by the key.
      */
     public void updateValue(K key, V value) {
+        modcnt++;
         int id = abs(key.hashCode()) % table.size();
         List<Pair<K, V>> bucket = table.get(id);
         if (bucket == null) {
@@ -185,10 +188,4 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         }
         return true;
     }
-
-    /**
-     * class that is used for detecting concurrent modification.
-     */
-
-
 }
