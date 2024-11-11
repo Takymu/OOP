@@ -1,40 +1,57 @@
 package ru.nsu.pereverzev;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.io.InputStream;
 
 public class Finder {
-    public ArrayList<Integer> find(String filename, String target) throws IOException {
-        int size = target.length() * 100;
+    public long[] find(String filename, String target) throws IOException {
+        int size = target.length() + 1;
         byte[] bufstr = target.getBytes(StandardCharsets.UTF_8);
-        InfiniteArray arr = new InfiniteArray(size * 2);
+        InfiniteArray arr = new InfiniteArray(size);
         InputStream inp = new FileInputStream(filename);
-        int byteRead = -1;
-        boolean finded = false;
-        long startpos = 0;
-        long curposfile = 0;
-        int curposstr = 0;
+        long[] finded = new long[2];
+        int byteRead = 0;
+        long curFilePos = 0;
+        long curStartPos = 0;
+        long curReqstPos = 0;
+        int curStrPos = 0;
+        byte curByte = 0;
+        boolean byteNeed = true;
 
-        while ((byteRead = inp.read()) != -1) {
-            //arr.set(curposfile, (byte)byteRead);
-            byte byt = (byte)byteRead;
-            startpos++;
-            if(!finded) {
-                if(byt == bufstr[0]) {
-                    finded = true;
-                } else {
-                    continue;
+        while(true) {
+            if(byteNeed) {
+                byteRead = inp.read();
+                if(byteRead == -1) {
+                    break; // HANDLE NON SUCCESS
                 }
+                curByte = (byte)byteRead;
+                curReqstPos++;
             }
-            while(finded) {
-                curposfile++;
-                byt = (byte)
+            arr.set(curFilePos, curByte);
+            if(bufstr[curStrPos] == arr.get(curFilePos)) {
+                curStrPos++;
+                if(curStrPos == bufstr.length) {
+                    finded[0] = curStartPos;
+                    finded[1] =
+                    break; // HANDLE SUCCESS
+                }
+                curFilePos++;
+            } else {
+                curStrPos = 0;
+                curStartPos++;
+                curFilePos = curStartPos;
+            }
+
+            if(curFilePos == curReqstPos) {
+                byteNeed = true;
+            } else {
+                byteNeed = false;
             }
         }
+
         return null;
     }
 }
