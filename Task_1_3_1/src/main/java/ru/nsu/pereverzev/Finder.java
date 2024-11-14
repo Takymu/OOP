@@ -1,12 +1,18 @@
 package ru.nsu.pereverzev;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.io.InputStream;
 
+/**
+ * class for finding the substring.
+ */
 public class Finder {
+    /**
+     * main method, that is finding the substring.
+     */
     public static ArrayList<Long> find(String filename, String target) throws IOException {
         int size = target.length() + 1;
         byte[] bufstr = target.getBytes(StandardCharsets.UTF_8);
@@ -23,14 +29,14 @@ public class Finder {
         long cntSyms = 0;
         boolean byteNeed = true;
 
-        while(true) {
-            if(byteNeed) {
+        while (true) {
+            if (byteNeed) {
                 byteRead = inp.read();
-                if(byteRead == -1) {
+                if (byteRead == -1) {
                     break; // FILE ENDED
                 }
-                curByte = (byte)byteRead;
-                if(getOctetNumber(curByte) > 0) {
+                curByte = (byte) byteRead;
+                if (getOctetNumber(curByte) > 0) {
                     cntSyms++;
                 }
                 curReqstPos++;
@@ -38,9 +44,9 @@ public class Finder {
 
             arr.set(curFilePos, curByte);
 
-            if(curStrPos < bufstr.length && bufstr[curStrPos] == arr.get(curFilePos)) {
+            if (curStrPos < bufstr.length && bufstr[curStrPos] == arr.get(curFilePos)) {
                 curStrPos++;
-                if(curStrPos == bufstr.length) {
+                if (curStrPos == bufstr.length) {
                     finded.add(cntSyms - target.length()); // SUCCESS, WE FIND SOMETHING
                 }
                 curFilePos++;
@@ -50,18 +56,17 @@ public class Finder {
                 curFilePos = curStartPos;
             }
 
-            if(curFilePos == curReqstPos) {
-                byteNeed = true;
-            } else {
-                byteNeed = false;
-            }
+            byteNeed = curFilePos == curReqstPos;
         }
 
         return finded;
     }
 
+    /**
+     * method for the knowing how much bytes will be next in UTF-8.
+     */
     private static int getOctetNumber(byte curbyte) {
-        if((curbyte & 0b10000000) == 0) {
+        if ((curbyte & 0b10000000) == 0) {
             return 1;
         } else if ((curbyte & 0b11100000) == 0b11000000) {
             return 2;
