@@ -21,9 +21,9 @@ class FinderTest {
                 writer.print("aааааaааджaааааaваааиааааaввввввввцвкаааaааааaабра");
             }
             writer.close();
+            ArrayList<Long> ls = Finder.find(filename, "бра");
             File toDelete = new File(filename);
             toDelete.delete();
-            ArrayList<Long> ls = Finder.find(filename, "бра");
             int id = 0;
             for (long i = 47; i < 20000 * 50 + 47; i+=50) {
                 assertEquals(i, ls.get(id));
@@ -41,9 +41,9 @@ class FinderTest {
             PrintWriter writer = new PrintWriter(filename, "UTF-8");
             writer.print("абракадабра");
             writer.close();
+            ArrayList<Long> ls = Finder.find(filename, "бра");
             File toDelete = new File(filename);
             toDelete.delete();
-            ArrayList<Long> ls = Finder.find(filename, "бра");
             assertEquals(1, ls.get(0));
             assertEquals(8, ls.get(1));
         } catch (Exception e) {
