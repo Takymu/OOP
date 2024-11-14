@@ -7,36 +7,41 @@ import java.util.ArrayList;
 import java.io.InputStream;
 
 public class Finder {
-    public long[] find(String filename, String target) throws IOException {
+    public static ArrayList<Long> find(String filename, String target) throws IOException {
         int size = target.length() + 1;
         byte[] bufstr = target.getBytes(StandardCharsets.UTF_8);
         InfiniteArray arr = new InfiniteArray(size);
         InputStream inp = new FileInputStream(filename);
-        long[] finded = new long[2];
+        ArrayList<Long> finded = new ArrayList<>();
         int byteRead = 0;
         long curFilePos = 0;
         long curStartPos = 0;
         long curReqstPos = 0;
         int curStrPos = 0;
         byte curByte = 0;
+        int remBytesCurSym = 0;
+        long cntSyms = 0;
         boolean byteNeed = true;
 
         while(true) {
             if(byteNeed) {
                 byteRead = inp.read();
                 if(byteRead == -1) {
-                    break; // HANDLE NON SUCCESS
+                    break; // FILE ENDED
                 }
                 curByte = (byte)byteRead;
+                if(getOctetNumber(curByte) > 0) {
+                    cntSyms++;
+                }
                 curReqstPos++;
             }
+
             arr.set(curFilePos, curByte);
-            if(bufstr[curStrPos] == arr.get(curFilePos)) {
+
+            if(curStrPos < bufstr.length && bufstr[curStrPos] == arr.get(curFilePos)) {
                 curStrPos++;
                 if(curStrPos == bufstr.length) {
-                    finded[0] = curStartPos;
-                    finded[1] =
-                    break; // HANDLE SUCCESS
+                    finded.add(cntSyms - target.length()); // SUCCESS, WE FIND SOMETHING
                 }
                 curFilePos++;
             } else {
@@ -52,6 +57,20 @@ public class Finder {
             }
         }
 
-        return null;
+        return finded;
+    }
+
+    private static int getOctetNumber(byte curbyte) {
+        if((curbyte & 0b10000000) == 0) {
+            return 1;
+        } else if ((curbyte & 0b11100000) == 0b11000000) {
+            return 2;
+        } else if ((curbyte & 0xF0) == 0b11100000) {
+            return 3;
+        } else if ((curbyte & 0b11111000) == 0b11110000) {
+            return 4;
+        } else {
+            return 0;
+        }
     }
 }
