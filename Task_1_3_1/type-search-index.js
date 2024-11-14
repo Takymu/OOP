@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.pereverzev","l":"Finder"},{"p":"ru.nsu.pereverzev","l":"InfiniteArray"},{"p":"ru.nsu.pereverzev","l":"Main"}]
