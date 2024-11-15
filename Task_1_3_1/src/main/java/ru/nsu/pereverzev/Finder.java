@@ -17,7 +17,6 @@ public class Finder {
         int size = target.length() + 1;
         byte[] bufstr = target.getBytes(StandardCharsets.UTF_8);
         InfiniteArray arr = new InfiniteArray(size);
-        InputStream inp = new FileInputStream(filename);
         ArrayList<Long> finded = new ArrayList<>();
         int byteRead = 0;
         long curFilePos = 0;
@@ -29,37 +28,38 @@ public class Finder {
         long cntSyms = 0;
         boolean byteNeed = true;
 
-        while (true) {
-            if (byteNeed) {
-                byteRead = inp.read();
-                if (byteRead == -1) {
-                    break; // FILE ENDED
+        try (InputStream inp = new FileInputStream(filename)) {
+            while (true) {
+                if (byteNeed) {
+                    byteRead = inp.read();
+                    if (byteRead == -1) {
+                        break; // FILE ENDED
+                    }
+                    curByte = (byte) byteRead;
+                    if (getOctetNumber(curByte) > 0) {
+                        cntSyms++;
+                    }
+                    curReqstPos++;
                 }
-                curByte = (byte) byteRead;
-                if (getOctetNumber(curByte) > 0) {
-                    cntSyms++;
+
+                arr.set(curFilePos, curByte);
+
+                if (curStrPos < bufstr.length && bufstr[curStrPos] == arr.get(curFilePos)) {
+                    curStrPos++;
+                    if (curStrPos == bufstr.length) {
+                        finded.add(cntSyms - target.length()); // SUCCESS, WE FIND SOMETHING
+                    }
+                    curFilePos++;
+                } else {
+                    curStrPos = 0;
+                    curStartPos++;
+                    curFilePos = curStartPos;
                 }
-                curReqstPos++;
+
+                byteNeed = curFilePos == curReqstPos;
             }
-
-            arr.set(curFilePos, curByte);
-
-            if (curStrPos < bufstr.length && bufstr[curStrPos] == arr.get(curFilePos)) {
-                curStrPos++;
-                if (curStrPos == bufstr.length) {
-                    finded.add(cntSyms - target.length()); // SUCCESS, WE FIND SOMETHING
-                }
-                curFilePos++;
-            } else {
-                curStrPos = 0;
-                curStartPos++;
-                curFilePos = curStartPos;
-            }
-
-            byteNeed = curFilePos == curReqstPos;
+            return finded;
         }
-
-        return finded;
     }
 
     /**
