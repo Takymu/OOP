@@ -1,7 +1,7 @@
 package ru.nsu.pereverzev;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for Table functionality.
@@ -17,7 +17,7 @@ class TableTest {
             .withAlignments(Table.ALIGN_RIGHT, Table.ALIGN_LEFT)
             .withRowLimit(8)
             .addRow("Index", "Random");
-        for (int i = 1; i <= 5; i ++) {
+        for (int i = 1; i <= 5; i++) {
             final var value = (int) (Math.random() * 10);
             if (value > 5) {
                 tableBuilder.addRow(i, new

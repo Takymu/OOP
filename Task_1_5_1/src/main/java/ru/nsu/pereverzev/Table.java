@@ -21,8 +21,8 @@ public class Table extends Element {
 
     private ArrayList<Element> cells1;
     private ArrayList<Element> cells2;
-    Alignment al1;
-    Alignment al2;
+    Alignment alignment1;
+    Alignment alignment2;
 
     /**
      * Constructs a table with cells.
@@ -38,9 +38,9 @@ public class Table extends Element {
     public static class Builder implements ru.nsu.pereverzev.Builder {
         private ArrayList<Element> elements1;
         private ArrayList<Element> elements2;
-        Alignment al1;
-        Alignment al2;
-        int rowlimit;
+        Alignment alignment1;
+        Alignment alignment2;
+        int rowLimit;
 
         /**
          * Initializes a new Table builder.
@@ -48,9 +48,9 @@ public class Table extends Element {
         public Builder() {
             elements1 = new ArrayList<>();
             elements2 = new ArrayList<>();
-            al1 = ALIGN_LEFT;
-            al2 = ALIGN_LEFT;
-            rowlimit = Integer.MAX_VALUE;
+            alignment1 = ALIGN_LEFT;
+            alignment2 = ALIGN_LEFT;
+            rowLimit = Integer.MAX_VALUE;
         }
 
         /**
@@ -72,8 +72,8 @@ public class Table extends Element {
         public Builder addRow(Object e1, Object e2) {
             elements1.add(convertToText(e1));
             elements2.add(convertToText(e2));
-            rowlimit--;
-            if (rowlimit == -1) {
+            rowLimit--;
+            if (rowLimit == -1) {
                 throw new IllegalStateException("Row limit exceeded");   
             }
             return this;
@@ -82,9 +82,9 @@ public class Table extends Element {
         /**
          * Sets column alignments.
          */
-        public Builder withAlignments(Alignment al1, Alignment al2) {
-            this.al1 = al1;
-            this.al2 = al2;
+        public Builder withAlignments(Alignment alignment1, Alignment alignment2) {
+            this.alignment1 = alignment1;
+            this.alignment2 = alignment2;
             return this;
         }
 
@@ -94,7 +94,7 @@ public class Table extends Element {
         public Builder withRowLimit(int n) {
             elements1 = new ArrayList<>(n);
             elements2 = new ArrayList<>(n);
-            rowlimit = n;
+            rowLimit = n;
             return this;
         }
 
@@ -110,15 +110,15 @@ public class Table extends Element {
     /**
      * Aligns the given element according to the specified alignment.
      */
-    private String align(Element e, Alignment al, int maxlen) {
+    private String align(Element e, Alignment alignment, int maxLength) {
         String s = "";
-        if (al == Alignment.ALIGN_CENTER) {
-            int padding = (maxlen - e.toString().length()) / 2;
-            s = " ".repeat(padding) + e.toString() + " ".repeat(maxlen - e.toString().length() - padding);
-        } else if (al == Alignment.ALIGN_RIGHT) {
-            s = " ".repeat(maxlen - e.toString().length()) + e.toString();
+        if (alignment == Alignment.ALIGN_CENTER) {
+            int padding = (maxLength - e.toString().length()) / 2;
+            s = " ".repeat(padding) + e.toString() + " ".repeat(maxLength - e.toString().length() - padding);
+        } else if (alignment == Alignment.ALIGN_RIGHT) {
+            s = " ".repeat(maxLength - e.toString().length()) + e.toString();
         } else {
-            s = e.toString() + " ".repeat(maxlen - e.toString().length());
+            s = e.toString() + " ".repeat(maxLength - e.toString().length());
         }
         return s;
     }
@@ -129,21 +129,33 @@ public class Table extends Element {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        int maxlen_col1 = cells1.stream().mapToInt(e -> e.toString().length()).max().orElse(0);
-        int maxlen_col2 = cells2.stream().mapToInt(e -> e.toString().length()).max().orElse(0);
+        int maxLengthCol1 = cells1.stream()
+            .mapToInt(e -> e.toString().length())
+            .max()
+            .orElse(0);
+        int maxLengthCol2 = cells2.stream()
+            .mapToInt(e -> e.toString().length())
+            .max()
+            .orElse(0);
         
-        result.append("| ").append(align(cells1.get(0), al1, maxlen_col1));
-        result.append(" | ").append(align(cells2.get(0), al2, maxlen_col2));
-        result.append(" |\n");
+        result.append("| ")
+            .append(align(cells1.get(0), alignment1, maxLengthCol1))
+            .append(" | ")
+            .append(align(cells2.get(0), alignment2, maxLengthCol2))
+            .append(" |\n");
 
-        result.append("| ").append("-".repeat(maxlen_col1));
-        result.append(" | ").append("-".repeat(maxlen_col2));
-        result.append(" |\n");
+        result.append("| ")
+            .append("-".repeat(maxLengthCol1))
+            .append(" | ")
+            .append("-".repeat(maxLengthCol2))
+            .append(" |\n");
         
         for (int i = 1; i < cells1.size(); ++i) {
-            result.append("| ").append(align(cells1.get(i), al1, maxlen_col1));
-            result.append(" | ").append(align(cells2.get(i), al2, maxlen_col2));
-            result.append(" |\n");
+            result.append("| ")
+                .append(align(cells1.get(i), alignment1, maxLengthCol1))
+                .append(" | ")
+                .append(align(cells2.get(i), alignment2, maxLengthCol2))
+                .append(" |\n");
         }
         return result.toString();
     }

@@ -47,8 +47,12 @@ public class Quote extends Text {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Quote)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Quote)) {
+            return false;
+        }
         
         Quote other = (Quote) obj;
         return this.toString().equals(other.toString());

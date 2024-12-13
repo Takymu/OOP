@@ -83,11 +83,17 @@ public class List extends Element {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof List)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof List)) {
+            return false;
+        }
         
         List other = (List) obj;
-        if (elements.size() != other.elements.size()) return false;
+        if (elements.size() != other.elements.size()) {
+            return false;
+        }
         
         for (int i = 0; i < elements.size(); i++) {
             if (!elements.get(i).equals(other.elements.get(i))) {

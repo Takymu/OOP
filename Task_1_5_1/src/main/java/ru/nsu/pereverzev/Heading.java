@@ -73,8 +73,12 @@ public class Heading extends Text {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Heading)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Heading)) {
+            return false;
+        }
         
         Heading other = (Heading) obj;
 
