@@ -20,9 +20,6 @@ public class Text extends Element {
 
         /**
          * Sets the text content.
-         * 
-         * @param text the text content
-         * @return this builder
          */
         public Builder setText(String text) {
             this.text = text;
@@ -31,8 +28,6 @@ public class Text extends Element {
         
         /**
          * Builds the Text instance.
-         * 
-         * @return the Text instance
          */
         public Text build() {
             return new Text(text);
@@ -43,9 +38,6 @@ public class Text extends Element {
 
     /**
      * Creates a Text from an integer.
-     * 
-     * @param number the integer value
-     * @return the Text instance
      */
     public static Text of(int number) {
         return new Text(String.valueOf(number));
@@ -53,9 +45,6 @@ public class Text extends Element {
 
     /**
      * Creates a Text from a string.
-     * 
-     * @param text the string value
-     * @return the Text instance
      */
     public static Text of(String text) {
         return new Text(text);
@@ -63,8 +52,6 @@ public class Text extends Element {
 
     /**
      * Constructs a Text with given content.
-     * 
-     * @param text the text content
      */
     public Text(String text) {
         this.text = text;
@@ -76,8 +63,6 @@ public class Text extends Element {
     public static class Bold extends Text {
         /**
          * Creates bold text.
-         * 
-         * @param text the text content
          */
         public Bold(String text) {
             super(text);
@@ -85,8 +70,6 @@ public class Text extends Element {
 
         /**
          * Returns bold-formatted text.
-         * 
-         * @return the formatted text
          */
         @Override
         public String toString() {
@@ -100,8 +83,6 @@ public class Text extends Element {
     public static class Italic extends Text {
         /**
          * Creates italic text.
-         * 
-         * @param text the text content
          */
         public Italic(String text) {
             super(text);
@@ -109,8 +90,6 @@ public class Text extends Element {
 
         /**
          * Returns italic-formatted text.
-         * 
-         * @return the formatted text
          */
         @Override
         public String toString() {
@@ -124,8 +103,6 @@ public class Text extends Element {
     public static class Crossed extends Text {
         /**
          * Creates crossed-out text.
-         * 
-         * @param text the text content
          */
         public Crossed(String text) {
             super(text);
@@ -133,8 +110,6 @@ public class Text extends Element {
 
         /**
          * Returns crossed-out formatted text.
-         * 
-         * @return the formatted text
          */
         @Override
         public String toString() {
@@ -148,8 +123,6 @@ public class Text extends Element {
     public static class Code extends Text {
         /**
          * Creates code text.
-         * 
-         * @param text the text content
          */
         public Code(String text) {
             super(text);
@@ -157,8 +130,6 @@ public class Text extends Element {
 
         /**
          * Returns code-formatted text.
-         * 
-         * @return the formatted text
          */
         @Override
         public String toString() {
@@ -172,8 +143,6 @@ public class Text extends Element {
     public static class Strikethrough extends Text {
         /**
          * Creates strikethrough text.
-         * 
-         * @param text the text content
          */
         public Strikethrough(String text) {
             super(text);
@@ -181,8 +150,6 @@ public class Text extends Element {
 
         /**
          * Returns strikethrough-formatted text.
-         * 
-         * @return the formatted text
          */
         @Override
         public String toString() {
@@ -196,8 +163,6 @@ public class Text extends Element {
     public static class Underlined extends Text {
         /**
          * Creates underlined text.
-         * 
-         * @param text the text content
          */
         public Underlined(String text) {
             super(text);
@@ -205,8 +170,6 @@ public class Text extends Element {
 
         /**
          * Returns underlined-formatted text.
-         * 
-         * @return the formatted text
          */
         @Override
         public String toString() {
@@ -216,8 +179,6 @@ public class Text extends Element {
 
     /**
      * Returns the text content.
-     * 
-     * @return the text content
      */
     @Override
     public String toString() {
@@ -226,9 +187,6 @@ public class Text extends Element {
 
     /**
      * Checks if this text is equal to the given object.
-     * 
-     * @param obj the object to compare
-     * @return true if equal, false otherwise
      */
     @Override
     public boolean equals(Object obj) {

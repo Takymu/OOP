@@ -24,9 +24,6 @@ public class Image extends Element {
 
         /**
          * Sets the URL of the image.
-         *
-         * @param url the URL of the image
-         * @return this Builder
          */
         public Builder setUrl(String url) {
             this.url = url;
@@ -35,9 +32,6 @@ public class Image extends Element {
 
         /**
          * Sets the alt text of the image.
-         *
-         * @param alt the alt text of the image
-         * @return this Builder
          */
         public Builder setAlt(String alt) {
             this.alt = alt;
@@ -46,8 +40,6 @@ public class Image extends Element {
 
         /**
          * Builds an Image object from the current state of this Builder.
-         *
-         * @return the built Image object
          */
         public Image build() {
             return new Image(url, alt);
@@ -56,9 +48,6 @@ public class Image extends Element {
     
     /**
      * Constructs a new Image with the given URL and alt text.
-     *
-     * @param url the URL of the image
-     * @param alt the alt text of the image
      */
     public Image(String url, String alt) {
         this.url = url;
@@ -67,8 +56,6 @@ public class Image extends Element {
 
     /**
      * Gets the URL of the image.
-     *
-     * @return the URL of the image
      */
     public String getUrl() {
         return url;
@@ -76,8 +63,6 @@ public class Image extends Element {
 
     /**
      * Gets the alt text of the image.
-     *
-     * @return the alt text of the image
      */
     public String getAlt() {    
         return alt;    
@@ -85,8 +70,6 @@ public class Image extends Element {
 
     /**
      * Sets the URL of the image.
-     *
-     * @param url the new URL of the image
      */
     public void setUrl(String url) {
         this.url = url;
@@ -94,8 +77,6 @@ public class Image extends Element {
 
     /**
      * Sets the alt text of the image.
-     *
-     * @param alt the new alt text of the image
      */
     public void setAlt(String alt) {
         this.alt = alt;
