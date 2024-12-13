@@ -1,21 +1,45 @@
 package ru.nsu.pereverzev;
 
+/**
+ * Represents a document heading with a specific level.
+ */
 public class Heading extends Text {
-    int level;
+    private int level;
 
+    /**
+     * Constructs a Heading with text and level.
+     */
+    public Heading(String text, int level) {
+        super(text);
+        this.level = level;
+    }
+
+    /**
+     * Builder for creating Heading instances.
+     */
     public static class Builder extends Text.Builder { 
         private int level;
 
+        /**
+         * Initializes a new Heading builder.
+         */
         public Builder() {
             super();
             level = 0;
         }
 
+        /**
+         * Sets the heading text.
+         */
+        @Override
         public Builder setText(String text) {
             this.text = text;
             return this;
         }
 
+        /**
+         * Sets the heading level (0-6).
+         */
         public Builder setLevel(int level) {
             if (level < 0 || level > 6) {
                 throw new IllegalArgumentException("Level must be between 0 and 6");
@@ -24,44 +48,36 @@ public class Heading extends Text {
             return this;
         }
 
+        /**
+         * Builds the Heading instance.
+         */
         public Heading build() {
             return new Heading(text, level);
         }
-    };
-
-    public Heading(String text, int level) {
-        super(text);
-        this.level = level;
     }
 
+    /**
+     * Returns the heading as a formatted string.
+     */
     @Override
     public String toString() {
-        String result = "";
+        StringBuilder prefix = new StringBuilder();
         for (int i = 0; i < level; i++) {
-            result += "#";
+            prefix.append("#");
         }
-        result += " " + super.toString() + "\n";
-        return result;
+        return prefix + " " + super.toString();
     }
 
+    /**
+     * Checks equality with another object.
+     */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+        if (this == obj) return true;
+        if (!(obj instanceof Heading)) return false;
+        
         Heading other = (Heading) obj;
-        if (level != other.level) {
-            return false;
-        }
-        if (!super.equals(obj)) {
-            return false;
-        }
-        return true;
+
+        return (this.toString().equals(other.toString()));
     }
 }

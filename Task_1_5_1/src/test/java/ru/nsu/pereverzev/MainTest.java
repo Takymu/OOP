@@ -1,33 +1,37 @@
 package ru.nsu.pereverzev;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
 
+/**
+ * Test class for various text-related functionality in the project.
+ * This class contains unit tests for Text, Builder, and related components.
+ */
 public class MainTest {
 
     @Test
     public void testTextBuilder() {
         Text.Builder builder = new Text.Builder();
         Text text = builder.setText("Hello").build();
-        assertEquals("Hello", text.toString().trim());
+        Assertions.assertEquals("Hello", text.toString().trim());
 
         Text customText = builder.setText("World").build();
-        assertEquals("World", customText.toString().trim());
+        Assertions.assertEquals("World", customText.toString().trim());
     }
 
     @Test
     public void testBoldText() {
         Text.Bold boldText = new Text.Bold("Important");
-        assertEquals("**Important**", boldText.toString().trim());
+        Assertions.assertEquals("**Important**", boldText.toString().trim());
     }
 
     @Test
     public void testHeading() {
         Heading h1 = new Heading.Builder().setLevel(1).setText("Title").build();
-        assertEquals("# Title", h1.toString().trim());
+        Assertions.assertEquals("# Title", h1.toString().trim());
 
         Heading h2 = new Heading.Builder().setLevel(2).setText("Subtitle").build();
-        assertEquals("## Subtitle", h2.toString().trim());
+        Assertions.assertEquals("## Subtitle", h2.toString().trim());
     }
 
     @Test
@@ -36,7 +40,7 @@ public class MainTest {
             .setText("Codeium")
             .setUrl("https://codeium.com")
             .build();
-        assertEquals("[Codeium](https://codeium.com)", link.toString().trim());
+        Assertions.assertEquals("[Codeium](https://codeium.com)", link.toString().trim());
     }
 
     @Test
@@ -45,7 +49,7 @@ public class MainTest {
             .setAlt("Logo")
             .setUrl("logo.png")
             .build();
-        assertEquals("![Logo](logo.png)", image.toString().trim());
+        Assertions.assertEquals("![Logo](logo.png)", image.toString().trim());
     }
 
     @Test
@@ -53,7 +57,7 @@ public class MainTest {
         Quote quote = new Quote.Builder()
             .setText("Innovation is key")
             .build();
-        assertEquals("> Innovation is key", quote.toString().trim());
+        Assertions.assertEquals("> Innovation is key", quote.toString().trim());
     }
 
     @Test
@@ -62,8 +66,8 @@ public class MainTest {
             .add("First")
             .add("Second")
             .build();
-        assertTrue(orderedList.toString().contains("1. First"));
-        assertTrue(orderedList.toString().contains("2. Second"));
+        Assertions.assertTrue(orderedList.toString().contains("1. First"));
+        Assertions.assertTrue(orderedList.toString().contains("2. Second"));
     }
 
     @Test
@@ -74,9 +78,9 @@ public class MainTest {
             .add(new Image.Builder().setUrl("image.jpg").setAlt("Sample").build())
             .build();
         
-        assertTrue(mixedList.toString().contains("1. Text item"));
-        assertTrue(mixedList.toString().contains("2. **Bold item**"));
-        assertTrue(mixedList.toString().contains("3. ![Sample](image.jpg)"));
+        Assertions.assertTrue(mixedList.toString().contains("1. Text item"));
+        Assertions.assertTrue(mixedList.toString().contains("2. **Bold item**"));
+        Assertions.assertTrue(mixedList.toString().contains("3. ![Sample](image.jpg)"));
     }
 
     @Test
@@ -85,7 +89,7 @@ public class MainTest {
             .setText("asdfasfasdfasdfas as dfa sd asfd")
             .build();
         
-        assertEquals("> asdfasfasdfasdfas as dfa sd asfd", 
+        Assertions.assertEquals("> asdfasfasdfasdfas as dfa sd asfd", 
             authoredQuote.toString().trim());
     }
 
@@ -96,7 +100,7 @@ public class MainTest {
             .setUrl("https://agdfgadgad.com")
             .build();
         
-        assertEquals("[asdf](https://agdfgadgad.com)", linkWithTitle.toString().trim());
+        Assertions.assertEquals("[asdf](https://agdfgadgad.com)", linkWithTitle.toString().trim());
     }
 
     @Test
@@ -106,10 +110,10 @@ public class MainTest {
         Text.Crossed crossedText = new Text.Crossed("Deleted");
         Text.Code codeText = new Text.Code("System.out.println()");
 
-        assertEquals("**Strong**", boldText.toString().trim());
-        assertEquals("*Emphasis*", italicText.toString().trim());
-        assertEquals("~~Deleted~~", crossedText.toString().trim());
-        assertEquals("`System.out.println()`", codeText.toString().trim());
+        Assertions.assertEquals("**Strong**", boldText.toString().trim());
+        Assertions.assertEquals("*Emphasis*", italicText.toString().trim());
+        Assertions.assertEquals("~~Deleted~~", crossedText.toString().trim());
+        Assertions.assertEquals("`System.out.println()`", codeText.toString().trim());
     }
 
     @Test
@@ -123,9 +127,9 @@ public class MainTest {
         tableBuilder.addRow("Alice", new Text.Bold("100"));
 
         Table table = tableBuilder.build();
-        assertNotNull(table);
-        assertTrue(table.toString().contains("Name"));
-        assertTrue(table.toString().contains("Value"));
+        Assertions.assertNotNull(table);
+        Assertions.assertTrue(table.toString().contains("Name"));
+        Assertions.assertTrue(table.toString().contains("Value"));
     }
 
     @Test
@@ -145,14 +149,14 @@ public class MainTest {
             .add("Third")
             .build();
         
-        assertEquals(list1, list1);
+        Assertions.assertEquals(list1, list1);
         
-        assertEquals(list1, list2);
-        assertEquals(list2, list1);
+        Assertions.assertEquals(list1, list2);
+        Assertions.assertEquals(list2, list1);
         
-        assertNotEquals(list1, differentList);
-        assertNotEquals(list1, null);
-        assertNotEquals(list1, new Object());
+        Assertions.assertNotEquals(list1, differentList);
+        Assertions.assertNotEquals(list1, null);
+        Assertions.assertNotEquals(list1, new Object());
     }
 
     @Test
@@ -172,14 +176,14 @@ public class MainTest {
             .setUrl("https://example.com")
             .build();
         
-        assertEquals(link1, link1);
+        Assertions.assertEquals(link1, link1);
         
-        assertEquals(link1, link2);
-        assertEquals(link2, link1);
+        Assertions.assertEquals(link1, link2);
+        Assertions.assertEquals(link2, link1);
         
-        assertNotEquals(link1, differentLink);
-        assertNotEquals(link1, null);
-        assertNotEquals(link1, new Object());
+        Assertions.assertNotEquals(link1, differentLink);
+        Assertions.assertNotEquals(link1, null);
+        Assertions.assertNotEquals(link1, new Object());
     }
 
     @Test
@@ -199,14 +203,14 @@ public class MainTest {
             .setUrl("other.png")
             .build();
         
-        assertEquals(image1, image1);
+        Assertions.assertEquals(image1, image1);
         
-        assertEquals(image1, image2);
-        assertEquals(image2, image1);
+        Assertions.assertEquals(image1, image2);
+        Assertions.assertEquals(image2, image1);
         
-        assertNotEquals(image1, differentImage);
-        assertNotEquals(image1, null);
-        assertNotEquals(image1, new Object());
+        Assertions.assertNotEquals(image1, differentImage);
+        Assertions.assertNotEquals(image1, null);
+        Assertions.assertNotEquals(image1, new Object());
     }
 
     @Test
@@ -226,14 +230,14 @@ public class MainTest {
             .setLevel(2)
             .build();
         
-        assertEquals(heading1, heading1);
+        Assertions.assertEquals(heading1, heading1);
         
-        assertEquals(heading1, heading2);
-        assertEquals(heading2, heading1);
+        Assertions.assertEquals(heading1, heading2);
+        Assertions.assertEquals(heading2, heading1);
         
-        assertNotEquals(heading1, differentHeading);
-        assertNotEquals(heading1, null);
-        assertNotEquals(heading1, new Object());
+        Assertions.assertNotEquals(heading1, differentHeading);
+        Assertions.assertNotEquals(heading1, null);
+        Assertions.assertNotEquals(heading1, new Object());
     }
 
     @Test
@@ -250,14 +254,14 @@ public class MainTest {
             .setText("quote")
             .build();
         
-        assertEquals(quote1, quote1);
+        Assertions.assertEquals(quote1, quote1);
         
-        assertEquals(quote1, quote2);
-        assertEquals(quote2, quote1);
+        Assertions.assertEquals(quote1, quote2);
+        Assertions.assertEquals(quote2, quote1);
         
-        assertNotEquals(quote1, differentQuote);
-        assertNotEquals(quote1, null);
-        assertNotEquals(quote1, new Object());
+        Assertions.assertNotEquals(quote1, differentQuote);
+        Assertions.assertNotEquals(quote1, null);
+        Assertions.assertNotEquals(quote1, new Object());
     }
 
     @Test
@@ -283,13 +287,13 @@ public class MainTest {
             .addRow(99, "Alice")
             .build();
         
-        assertEquals(table1, table1);
+        Assertions.assertEquals(table1, table1);
         
-        assertEquals(table1, table2);
-        assertEquals(table2, table1);
+        Assertions.assertEquals(table1, table2);
+        Assertions.assertEquals(table2, table1);
         
-        assertNotEquals(table1, differentTable);
-        assertNotEquals(table1, null);
-        assertNotEquals(table1, new Object());
+        Assertions.assertNotEquals(table1, differentTable);
+        Assertions.assertNotEquals(table1, null);
+        Assertions.assertNotEquals(table1, new Object());
     }
 }

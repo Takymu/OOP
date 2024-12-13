@@ -2,105 +2,135 @@ package ru.nsu.pereverzev;
 
 import java.util.ArrayList;
 
-public class Table extends Element{
-    private ArrayList<Element> cells1;
-    private ArrayList<Element> cells2;
-
-    Alignment al1;
-    Alignment al2;
-
+/**
+ * Represents a table element in a document.
+ */
+public class Table extends Element {
+    /**
+     * Enumeration of possible text alignments.
+     */
     enum Alignment {
         ALIGN_LEFT,
         ALIGN_CENTER,
         ALIGN_RIGHT
     }
-    
+
     public static final Alignment ALIGN_LEFT = Alignment.ALIGN_LEFT;
     public static final Alignment ALIGN_CENTER = Alignment.ALIGN_CENTER;
     public static final Alignment ALIGN_RIGHT = Alignment.ALIGN_RIGHT;
 
+    private ArrayList<Element> cells1;
+    private ArrayList<Element> cells2;
+    Alignment al1;
+    Alignment al2;
+
+    /**
+     * Constructs a table with cells.
+     */
     Table(ArrayList<Element> cells1, ArrayList<Element> cells2) {
         this.cells1 = cells1;
         this.cells2 = cells2;
     }
 
+    /**
+     * Builder for creating Table instances.
+     */
     public static class Builder implements ru.nsu.pereverzev.Builder {
         private ArrayList<Element> elements1;
         private ArrayList<Element> elements2;
         Alignment al1;
         Alignment al2;
         int rowlimit;
-        Builder() {
-            elements1 = new ArrayList<Element>();
-            elements2 = new ArrayList<Element>();
-            rowlimit = 0;
+
+        /**
+         * Initializes a new Table builder.
+         */
+        public Builder() {
+            elements1 = new ArrayList<>();
+            elements2 = new ArrayList<>();
             al1 = ALIGN_LEFT;
             al2 = ALIGN_LEFT;
+            rowlimit = Integer.MAX_VALUE;
         }
 
+        /**
+         * Converts an object to a Text element.
+         */
         private Text convertToText(Object obj) {
             if (obj instanceof Text) {
                 return (Text) obj;
-            } else if (obj instanceof String) {
-                return Text.of((String) obj);
+            } else if (obj instanceof Element) {
+                return new Text.Builder().setText(((Element) obj).toString()).build();
             } else {
-                return Text.of(String.valueOf(obj));
+                return new Text.Builder().setText(String.valueOf(obj)).build();
             }
         }
 
+        /**
+         * Adds a row to the table.
+         */
         public Builder addRow(Object e1, Object e2) {
             elements1.add(convertToText(e1));
             elements2.add(convertToText(e2));
             rowlimit--;
-            if(rowlimit == -1) {
+            if (rowlimit == -1) {
                 throw new IllegalStateException("Row limit exceeded");   
             }
             return this;
         }
+
+        /**
+         * Sets column alignments.
+         */
         public Builder withAlignments(Alignment al1, Alignment al2) {
             this.al1 = al1;
             this.al2 = al2;
             return this;
         }
+
+        /**
+         * Sets the maximum number of rows.
+         */
         public Builder withRowLimit(int n) {
-            elements1 = new ArrayList<Element>(n);
-            elements2 = new ArrayList<Element>(n);
+            elements1 = new ArrayList<>(n);
+            elements2 = new ArrayList<>(n);
             rowlimit = n;
             return this;
         }
 
+        /**
+         * Builds the Table instance.
+         */
         @Override
         public Table build() {
             return new Table(elements1, elements2);
         }
     }
     
+    /**
+     * Aligns the given element according to the specified alignment.
+     */
     private String align(Element e, Alignment al, int maxlen) {
         String s = "";
         if (al == Alignment.ALIGN_CENTER) {
-            s = " ".repeat((maxlen - e.toString().length()) / 2) + e.toString() 
-                + " ".repeat((maxlen - e.toString().length()) / 2 + 1);
+            int padding = (maxlen - e.toString().length()) / 2;
+            s = " ".repeat(padding) + e.toString() + " ".repeat(maxlen - e.toString().length() - padding);
         } else if (al == Alignment.ALIGN_RIGHT) {
-            s = e.toString() + " ".repeat(maxlen - e.toString().length());
-        } else {
             s = " ".repeat(maxlen - e.toString().length()) + e.toString();
+        } else {
+            s = e.toString() + " ".repeat(maxlen - e.toString().length());
         }
         return s;
     }
 
+    /**
+     * Returns the table as a formatted string.
+     */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        int maxlen_col1 = 0;
-        int maxlen_col2 = 0;
-        for (int i = 0; i < cells1.size(); ++i) {
-            if (cells1.get(i).toString().length() > maxlen_col1) {
-                maxlen_col1 = cells1.get(i).toString().length();
-            }
-            if (cells2.get(i).toString().length() > maxlen_col2) {
-                maxlen_col2 = cells2.get(i).toString().length();
-            }
-        }
+        int maxlen_col1 = cells1.stream().mapToInt(e -> e.toString().length()).max().orElse(0);
+        int maxlen_col2 = cells2.stream().mapToInt(e -> e.toString().length()).max().orElse(0);
         
         result.append("| ").append(align(cells1.get(0), al1, maxlen_col1));
         result.append(" | ").append(align(cells2.get(0), al2, maxlen_col2));
@@ -118,6 +148,9 @@ public class Table extends Element{
         return result.toString();
     }
 
+    /**
+     * Checks equality with another object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -130,13 +163,20 @@ public class Table extends Element{
             return false;
         }
         Table other = (Table) obj;
-        if (!cells1.equals(other.cells1)) {
+        if (cells1 == null) {
+            if (other.cells1 != null) {
+                return false;
+            }
+        } else if (!cells1.equals(other.cells1)) {
             return false;
         }
-        if (!cells2.equals(other.cells2)) {
+        if (cells2 == null) {
+            if (other.cells2 != null) {
+                return false;
+            }
+        } else if (!cells2.equals(other.cells2)) {
             return false;
         }
         return true;
     }
-    
 }

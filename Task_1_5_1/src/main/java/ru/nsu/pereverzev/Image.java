@@ -1,5 +1,8 @@
 package ru.nsu.pereverzev;
 
+/**
+ * Class representing image element.
+ */
 public class Image extends Element {
     private String url;
     private String alt;
