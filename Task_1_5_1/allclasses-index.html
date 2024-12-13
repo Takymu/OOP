@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":1,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":2,"i12":2,"i13":2,"i14":2,"i15":2,"i16":2,"i17":2,"i18":2,"i19":2};
+var data = {"i0":1,"i1":2,"i2":2,"i3":2,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":2,"i12":2,"i13":2,"i14":2,"i15":2,"i16":2,"i17":2,"i18":2,"i19":2,"i20":2,"i21":2};
 var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -111,23 +111,33 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Builder.html" title="interface in ru.nsu.pereverzev">Builder</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Generic builder interface for creating document elements.</div>
+</th>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Element.html" title="class in ru.nsu.pereverzev">Element</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Abstract base class for document elements.</div>
+</th>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Heading.html" title="class in ru.nsu.pereverzev">Heading</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents a document heading with a specific level.</div>
+</th>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Heading.Builder.html" title="class in ru.nsu.pereverzev">Heading.Builder</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Builder for creating Heading instances.</div>
+</th>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Image.html" title="class in ru.nsu.pereverzev">Image</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Class representing image element.</div>
+</th>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Image.Builder.html" title="class in ru.nsu.pereverzev">Image.Builder</a></td>
@@ -135,59 +145,99 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Link.html" title="class in ru.nsu.pereverzev">Link</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents a link element in a document.</div>
+</th>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Link.Builder.html" title="class in ru.nsu.pereverzev">Link.Builder</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Builder for creating Link instances.</div>
+</th>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/List.html" title="class in ru.nsu.pereverzev">List</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents a list of elements in a document.</div>
+</th>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/List.Builder.html" title="class in ru.nsu.pereverzev">List.Builder</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Builder for creating List instances.</div>
+</th>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Quote.html" title="class in ru.nsu.pereverzev">Quote</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents a quote element in a document.</div>
+</th>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Quote.Builder.html" title="class in ru.nsu.pereverzev">Quote.Builder</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Builder for creating Quote instances.</div>
+</th>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Table.html" title="class in ru.nsu.pereverzev">Table</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents a table element in a document.</div>
+</th>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Table.Builder.html" title="class in ru.nsu.pereverzev">Table.Builder</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Builder for creating Table instances.</div>
+</th>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Text.html" title="class in ru.nsu.pereverzev">Text</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents a text element in a document.</div>
+</th>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Text.Bold.html" title="class in ru.nsu.pereverzev">Text.Bold</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents bold text.</div>
+</th>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Text.Builder.html" title="class in ru.nsu.pereverzev">Text.Builder</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Builder for creating Text instances.</div>
+</th>
 </tr>
 <tr id="i17" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Text.Code.html" title="class in ru.nsu.pereverzev">Text.Code</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents code text.</div>
+</th>
 </tr>
 <tr id="i18" class="altColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Text.Crossed.html" title="class in ru.nsu.pereverzev">Text.Crossed</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents crossed-out text.</div>
+</th>
 </tr>
 <tr id="i19" class="rowColor">
 <td class="colFirst"><a href="ru/nsu/pereverzev/Text.Italic.html" title="class in ru.nsu.pereverzev">Text.Italic</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Represents italic text.</div>
+</th>
+</tr>
+<tr id="i20" class="altColor">
+<td class="colFirst"><a href="ru/nsu/pereverzev/Text.Strikethrough.html" title="class in ru.nsu.pereverzev">Text.Strikethrough</a></td>
+<th class="colLast" scope="row">
+<div class="block">Represents strikethrough text.</div>
+</th>
+</tr>
+<tr id="i21" class="rowColor">
+<td class="colFirst"><a href="ru/nsu/pereverzev/Text.Underlined.html" title="class in ru.nsu.pereverzev">Text.Underlined</a></td>
+<th class="colLast" scope="row">
+<div class="block">Represents underlined text.</div>
+</th>
 </tr>
 </table>
 </li>
