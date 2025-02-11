@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.pereverzev","l":"Main"},{"p":"ru.nsu.pereverzev","l":"MultyThreadFind"},{"p":"ru.nsu.pereverzev","l":"notSimple"},{"p":"ru.nsu.pereverzev","l":"ParStreamFind"},{"p":"ru.nsu.pereverzev","l":"SingleThreadFind"}];updateSearchResults();
