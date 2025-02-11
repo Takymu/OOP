@@ -11,7 +11,7 @@ public class MultyThreadFind {
         Thread[] threads = new Thread[thrnum];
 
         int len = lst.size() / thrnum;
-        for(int i = 0; i < thrnum; i++) {
+        for (int i = 0; i < thrnum; i++) {
             int sid = i * len;
             int end = Math.min(sid + len, lst.size());
             threads[i] = new Thread(() -> {
