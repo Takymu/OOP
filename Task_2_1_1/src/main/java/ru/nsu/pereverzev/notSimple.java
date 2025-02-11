@@ -1,6 +1,12 @@
 package ru.nsu.pereverzev;
 
+/**
+ * Класс для проверки числа на непростоту.
+ */
 public class notSimple {
+    /**
+     * Проверяет, является ли число непростым.
+     */
     public static boolean check(int number) {
         if (number <= 1) {
             return true;

@@ -3,7 +3,13 @@ package ru.nsu.pereverzev;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Класс для многопоточного поиска непростых чисел в списке.
+ */
 public class MultyThreadFind {
+    /**
+     * Метод для многопоточного поиска непростого числа в списке.
+     */
     public static boolean find(ArrayList<Integer> lst, int thrnum) {
 
         AtomicBoolean found = new AtomicBoolean(false);
