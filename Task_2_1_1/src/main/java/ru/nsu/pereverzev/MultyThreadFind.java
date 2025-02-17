@@ -22,6 +22,9 @@ public class MultyThreadFind {
             int end = Math.min(sid + len, lst.size());
             threads[i] = new Thread(() -> {
                 for (int j = sid; j < end; j++) {
+                    if (found.get()) {
+                        return;
+                    }
                     if (notSimple.check(lst.get(j))) {
                         found.set(true);
                         break;
