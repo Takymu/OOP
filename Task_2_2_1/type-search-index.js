@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.pereverzev","l":"Chef"},{"p":"ru.nsu.pereverzev","l":"Courier"},{"p":"ru.nsu.pereverzev","l":"Dish"},{"p":"ru.nsu.pereverzev","l":"Picery"},{"p":"ru.nsu.pereverzev","l":"QueueSafe"}];updateSearchResults();
