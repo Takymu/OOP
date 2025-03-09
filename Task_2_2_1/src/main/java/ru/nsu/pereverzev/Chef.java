@@ -1,16 +1,14 @@
 package ru.nsu.pereverzev;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Chef extends Thread{
     private double speed;
     private AtomicBoolean endOfDay;
-    private ArrayBlockingQueue<Dish> storage;
-    private LinkedBlockingQueue<Dish> queue;
+    private QueueSafe<Dish> storage;
+    private QueueSafe<Dish> queue;
     Chef(double speed, AtomicBoolean endOfDay,
-         ArrayBlockingQueue<Dish> storage, LinkedBlockingQueue<Dish> queue) {
+            QueueSafe<Dish> storage, QueueSafe<Dish> queue) {
         this.speed = speed;
         this.endOfDay = endOfDay;
         this.storage = storage;
@@ -18,12 +16,26 @@ public class Chef extends Thread{
     }
     public void run() {
         try {
-            while (!endOfDay.get()) {
+            while (true) {
+                synchronized (this.queue) {
+                    while (!endOfDay.get() && queue.isEmpty()) {
+                        queue.wait();
+                    }
+                }
+                if (endOfDay.get()) {
+                    break;
+                }
                 Dish dish = queue.take();
+                if (dish == null) {
+                    continue;
+                }
                 Thread.sleep((long) (1000 / speed));
                 dish.setStatus("cooked");
                 System.out.println(dish.getStatus());
-                storage.put(dish);
+                storage.add(dish);
+                synchronized (this.storage) {
+                    storage.notify();
+                }
             }            
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();

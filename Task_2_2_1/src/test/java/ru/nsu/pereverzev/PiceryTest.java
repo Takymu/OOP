@@ -1,11 +1,16 @@
 package ru.nsu.pereverzev;
 
-public class Main {
+import org.junit.jupiter.api.Test;
 
-    public static void main(String[] args) {
+import static org.junit.jupiter.api.Assertions.*;
+
+class PiceryTest {
+    @Test
+    public void pictest() {
         Picery picery = new Picery(3, 3, 10);
         picery.run();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 20; i++)
+        {
             picery.queueDish(new Dish("pizza"));
         }
         try {
@@ -13,7 +18,7 @@ public class Main {
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
-        picery.endOfDay();            
-
+        picery.endOfDay();
     }
+
 }
