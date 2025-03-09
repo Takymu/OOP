@@ -2,26 +2,41 @@ package ru.nsu.pereverzev;
 
 import java.util.ArrayList;
 
+/**
+ * A thread-safe queue implementation.
+ */
 public class QueueSafe<T> {
-    
-    private ArrayList<T> queue;
 
+    private final ArrayList<T> queue;
+
+    /**
+     * Constructs a QueueSafe with the specified size.
+     */
     QueueSafe(int size) {
         this.queue = new ArrayList<T>(size);
     }
 
-    synchronized public void add(T item) {
-        this.queue.add(item);   
+    /**
+     * Adds an item to the queue.
+     */
+    public synchronized void add(T item) {
+        this.queue.add(item);
     }
 
-    synchronized public T take() {
+    /**
+     * Removes and returns the first item in the queue, or null if empty.
+     */
+    public synchronized T take() {
         if (this.queue.isEmpty()) {
             return null;
         }
         return this.queue.remove(0);
     }
 
-    synchronized public boolean isEmpty() {
+    /**
+     * Checks if the queue is empty.
+     */
+    public synchronized boolean isEmpty() {
         return this.queue.isEmpty();
     }
 }

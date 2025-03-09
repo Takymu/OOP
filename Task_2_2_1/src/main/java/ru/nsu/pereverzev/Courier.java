@@ -3,20 +3,28 @@ package ru.nsu.pereverzev;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Courier extends Thread{
-    private int volume;
-    private AtomicBoolean endOfDay;
-    private QueueSafe<Dish> storage;
-    private ArrayList<Dish> trunk;
+/**
+ * Represents a Courier that delivers dishes.
+ */
+public class Courier extends Thread {
+    private final int volume;
+    private final AtomicBoolean endOfDay;
+    private final QueueSafe<Dish> storage;
+    private final ArrayList<Dish> trunk;
 
-    Courier(int volume, AtomicBoolean endOfDay,
-        QueueSafe<Dish> storage) {
+    /**
+     * Constructs a Courier with specified volume and storage.
+     */
+    Courier(int volume, AtomicBoolean endOfDay, QueueSafe<Dish> storage) {
         this.volume = volume;
         this.endOfDay = endOfDay;
         this.storage = storage;
         this.trunk = new ArrayList<Dish>();
     }
 
+    /**
+     * Runs the courier's delivery process, taking dishes from storage and delivering them.
+     */
     @Override
     public void run() {
         try {
@@ -26,12 +34,12 @@ public class Courier extends Thread{
                         storage.wait();
                     }
                 }
-                if(endOfDay.get()) {
+                if (endOfDay.get()) {
                     break;
                 }
                 for (int i = 0; i < volume; i++) {
                     Dish dish = storage.take();
-                    if(dish == null) {
+                    if (dish == null) {
                         continue;
                     }
                     this.trunk.add(dish);

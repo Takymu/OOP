@@ -2,18 +2,28 @@ package ru.nsu.pereverzev;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class Chef extends Thread{
-    private double speed;
-    private AtomicBoolean endOfDay;
-    private QueueSafe<Dish> storage;
-    private QueueSafe<Dish> queue;
-    Chef(double speed, AtomicBoolean endOfDay,
-            QueueSafe<Dish> storage, QueueSafe<Dish> queue) {
+/**
+ * Represents a Chef that prepares dishes in a kitchen.
+ */
+public class Chef extends Thread {
+    private final double speed;
+    private final AtomicBoolean endOfDay;
+    private final QueueSafe<Dish> storage;
+    private final QueueSafe<Dish> queue;
+
+    /**
+     * Constructs a Chef with specified speed and storage.
+     */
+    Chef(double speed, AtomicBoolean endOfDay, QueueSafe<Dish> storage, QueueSafe<Dish> queue) {
         this.speed = speed;
         this.endOfDay = endOfDay;
         this.storage = storage;
         this.queue = queue;
     }
+
+    /**
+     * Runs the chef's cooking process, taking dishes from the queue and cooking them.
+     */
     public void run() {
         try {
             while (true) {
@@ -36,7 +46,7 @@ public class Chef extends Thread{
                 synchronized (this.storage) {
                     storage.notify();
                 }
-            }            
+            }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
