@@ -11,15 +11,18 @@ public class Courier extends Thread {
     private final AtomicBoolean endOfDay;
     private final QueueSafe<Dish> storage;
     private final ArrayList<Dish> trunk;
+    private long delivery_time;
 
     /**
      * Constructs a Courier with specified volume and storage.
      */
-    Courier(int volume, AtomicBoolean endOfDay, QueueSafe<Dish> storage) {
+    Courier(int volume, AtomicBoolean endOfDay, QueueSafe<Dish> storage,
+            long delivery_time) {
         this.volume = volume;
         this.endOfDay = endOfDay;
         this.storage = storage;
         this.trunk = new ArrayList<Dish>();
+        this.delivery_time = delivery_time;
     }
 
     /**
@@ -44,10 +47,10 @@ public class Courier extends Thread {
                     }
                     this.trunk.add(dish);
                 }
-                Thread.sleep(1000);
+                Thread.sleep(this.delivery_time);
                 for (Dish dish : this.trunk) {
                     dish.setStatus("delivered");
-                    System.out.println(dish.getStatus());
+                    System.out.println(dish.getId() + " " + dish.getStatus());
                 }
                 this.trunk.clear();
             }

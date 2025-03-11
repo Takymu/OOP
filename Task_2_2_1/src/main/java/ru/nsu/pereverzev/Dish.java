@@ -6,13 +6,14 @@ package ru.nsu.pereverzev;
 public class Dish {
     final String type;
     String status;
-
+    int id;
     /**
      * Constructs a Dish with the specified type and a default status.
      */
-    Dish(String type) {
+    Dish(String type, int id) {
         this.status = "no status";
         this.type = type;
+        this.id = id;
     }
 
     /**
@@ -20,6 +21,13 @@ public class Dish {
      */
     public String getStatus() {
         return this.status;
+    }
+
+    /**
+     * Returns the id.
+     */
+    public int getId() {
+        return this.id;
     }
 
     /**
