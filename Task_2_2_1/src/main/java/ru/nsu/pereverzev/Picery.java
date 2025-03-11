@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 /**
  * Represents a Picery that manages chefs and couriers for dish preparation and delivery.
  */
@@ -21,26 +22,17 @@ public class Picery {
     /**
      * Constructs a Picery with the specified number of chefs and couriers, and storage size.
      */
-    Picery(int numChefs, int numCouriers, int storageSize) {
-        Config config;
-        try {
-            Gson gson = new Gson();
-            config = gson.fromJson(new FileReader("config.json"), Config.class);
-        } catch (FileNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
+    Picery(int numChefs, int numCouriers, int storageSize, Config config) {
         this.chefs = new ArrayList<Chef>(numChefs);
         this.couriers = new ArrayList<Courier>(numCouriers);
         this.storage = new QueueSafe<Dish>(storageSize);
         this.queue = new QueueSafe<Dish>(10);
         Random random = new Random();
         for (int i = 0; i < numChefs; i++) {
-            this.chefs.add(new Chef(random.nextDouble() + 0.1, endOfDay,
-                    storage, queue, config.getMean_cook_time_ms()));
+            this.chefs.add(new Chef(random.nextDouble() + 0.1, endOfDay, storage, queue, config.getMean_cook_time_ms()));
         }
         for (int i = 0; i < numCouriers; i++) {
-            this.couriers.add(new Courier(random.nextInt(10) + 1, endOfDay,
-                    storage, config.getDelivery_time_ms()));
+            this.couriers.add(new Courier(random.nextInt(10) + 1, endOfDay, storage, config.getDelivery_time_ms()));
         }
     }
 

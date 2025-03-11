@@ -10,18 +10,18 @@ public class Chef extends Thread {
     private final AtomicBoolean endOfDay;
     private final QueueSafe<Dish> storage;
     private final QueueSafe<Dish> queue;
-    private long cook_time;
+    private final long cookTime;
 
     /**
      * Constructs a Chef with specified speed and storage.
      */
     Chef(double speed, AtomicBoolean endOfDay, QueueSafe<Dish> storage,
-         QueueSafe<Dish> queue, long cook_time) {
+         QueueSafe<Dish> queue, long cookTime) {
         this.speed = speed;
         this.endOfDay = endOfDay;
         this.storage = storage;
         this.queue = queue;
-        this.cook_time = cook_time;
+        this.cookTime = cookTime;
     }
 
     /**
@@ -42,7 +42,7 @@ public class Chef extends Thread {
                 if (dish == null) {
                     continue;
                 }
-                Thread.sleep((long) (this.cook_time / speed));
+                Thread.sleep((long) (this.cookTime / speed));
                 dish.setStatus("cooked");
                 System.out.println(dish.getId() + " " + dish.getStatus());
                 storage.add(dish);

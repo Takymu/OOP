@@ -12,7 +12,7 @@ public class QueueSafe<T> {
     /**
      * Constructs a QueueSafe with the specified size.
      */
-    QueueSafe(int size) { 
+    QueueSafe(int size) {
         this.queue = new ArrayList<T>(size);
     }
 
