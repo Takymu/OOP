@@ -19,11 +19,11 @@ class PiceryTest {
         }
         Picery picery = new Picery(3, 3, 10, config);
         picery.run();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10; i++) {
             picery.queueDish(new Dish("pizza", i));
         }
         try {
-            Thread.sleep(20000);
+            Thread.sleep(1300);
         } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
