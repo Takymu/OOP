@@ -2,8 +2,6 @@ package ru.nsu.pereverzev;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;

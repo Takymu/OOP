@@ -29,10 +29,12 @@ public class Picery {
         this.queue = new QueueSafe<Dish>(10);
         Random random = new Random();
         for (int i = 0; i < numChefs; i++) {
-            this.chefs.add(new Chef(random.nextDouble() + 0.1, endOfDay, storage, queue, config.getMean_cook_time_ms()));
+            this.chefs.add(new Chef(random.nextDouble() + 0.1, endOfDay,
+                    storage, queue, config.getMean_cook_time_ms()));
         }
         for (int i = 0; i < numCouriers; i++) {
-            this.couriers.add(new Courier(random.nextInt(10) + 1, endOfDay, storage, config.getDelivery_time_ms()));
+            this.couriers.add(new Courier(random.nextInt(10) + 1,
+                    endOfDay, storage, config.getDelivery_time_ms()));
         }
     }
 
