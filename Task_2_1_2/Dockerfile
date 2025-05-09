@@ -1,4 +1,4 @@
 FROM openjdk:11
 WORKDIR /app
-COPY DistributedCompositeCheck.java .
-RUN javac DistributedCompositeCheck.java
+COPY RobustCompCheck.java .
+RUN javac RobustCompCheck.java
