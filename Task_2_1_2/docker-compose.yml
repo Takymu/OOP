@@ -1,0 +1,50 @@
+services:
+  server:
+    image: compcheck
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: server
+    networks:
+      - net
+    command: ["java", "RobustCompCheck", "server", "8080"]
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  client1:
+    image: compcheck
+    networks:
+      - net
+    depends_on:
+      - server
+    command: ["java", "RobustCompCheck", "client", "server", "8080"]
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  client2:
+    image: compcheck
+    networks:
+      - net
+    depends_on:
+      - server
+    command: ["java", "RobustCompCheck", "client", "server", "8080"]
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  client3:
+    image: compcheck
+    networks:
+      - net
+    depends_on:
+      - server
+    command: ["java", "RobustCompCheck", "client", "server", "8080"]
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+networks:
+  net:
+    driver: bridge
